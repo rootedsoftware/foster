@@ -1,4 +1,4 @@
-import { Rates } from '/imports/api/rates/rates.js';
+import { Rates, removeRate } from '/imports/api/rates/rates.js';
 import { Meteor } from 'meteor/meteor';
 import './rate.html';
 
@@ -11,3 +11,13 @@ Template.Rate.helpers({
     return Rates.findOne();
   }
 });
+
+Template.Rate.events({
+  'click .removeRate'() {
+    removeRate(this._id);
+    FlowRouter.go('/rates');
+  },
+  'click .editRate'() {
+    FlowRouter.go(`/rates/edit?id=${this._id}`);
+  }
+})

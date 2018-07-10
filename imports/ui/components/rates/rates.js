@@ -1,4 +1,4 @@
-import { Rates } from '/imports/api/rates/rates.js';
+import { Rates, removeRate } from '/imports/api/rates/rates.js';
 import { Meteor } from 'meteor/meteor';
 import './rates.html';
 
@@ -28,4 +28,7 @@ Template.Rates.events({
       }
     });
   },
+  'click .removeRate'() {
+    removeRate(this._id);
+  }
 });

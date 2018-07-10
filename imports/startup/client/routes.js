@@ -6,6 +6,7 @@ import '../../ui/layouts/body/body.js';
 import '../../ui/pages/home/home.js';
 import '../../ui/components/rates/rates.js';
 import '../../ui/components/rate/rate.js';
+import '../../ui/components/rate/EditRate.js';
 import '../../ui/pages/not-found/not-found.js';
 
 FlowRouter.route('/', {
@@ -26,7 +27,12 @@ FlowRouter.route('/rate/:rateId', {
     BlazeLayout.render('AppBody', { main: 'Rate' });
   },
 });
-
+FlowRouter.route('/rate/edit/:rateId', {
+  name: 'EditRate',
+  action() {
+    BlazeLayout.render('AppBody', { main: 'EditRate' });
+  },
+});
 FlowRouter.notFound = {
   action() {
     BlazeLayout.render('AppBody', { main: 'App_notFound' });

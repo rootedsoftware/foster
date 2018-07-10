@@ -1,0 +1,18 @@
+<template name="EditRate">
+  <h1>
+    Edit rate page
+  </h1>
+  <p>
+    {{#with rate}}
+      <form>
+        <input type="text" id="name" value="{{name}}" />
+        <input type="text" id="dailyAmount" value="{{dailyAmount}}" />
+        <input type="hidden" id="_id" value="{{_id}}" />
+        <button type="submit">Update</button>
+      </form>
+    {{/with}}
+  </p>
+  <p>
+    <a href="/">Go Home</a>
+  </p>
+</template>

@@ -7,7 +7,7 @@
     </form>
     <ul>
     {{#each rates}}
-      <li><a href="rate/{{_id}}">{{name}}</a></li>
+      <li><a href="rate/{{_id}}">{{name}} - ${{dailyAmount}}</a> <button class="removeRate">Remove</button></li>
     {{/each}}
   </ul>
 </template>

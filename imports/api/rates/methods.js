@@ -14,4 +14,15 @@ Meteor.methods({
       dailyAmount,
     });
   },
+  'rates.remove'(_id) {
+    check(_id, String);
+    return Rates.remove({
+      _id
+    });
+  },
+  'rates.update'(_id, dailyAmount, name) {
+    check(dailyAmount, String);
+    check(name, String);
+    return Rates.update({_id}, { $set: { dailyAmount, name } });
+  },
 });

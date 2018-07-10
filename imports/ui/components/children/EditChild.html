@@ -1,0 +1,18 @@
+<template name="EditChild">
+  <h1>
+    Edit child page
+  </h1>
+  <p>
+    {{#with child}}
+      <form>
+        <input type="text" id="name" value="{{name}}" />
+        <input type="text" id="age" value="{{age}}" />
+        <input type="hidden" id="_id" value="{{_id}}" />
+        <button type="submit">Update</button>
+      </form>
+    {{/with}}
+  </p>
+  <p>
+    <a href="/">Go Home</a>
+  </p>
+</template>

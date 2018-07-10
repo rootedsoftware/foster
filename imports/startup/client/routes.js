@@ -7,6 +7,9 @@ import '../../ui/pages/home/home.js';
 import '../../ui/components/rates/rates.js';
 import '../../ui/components/rate/rate.js';
 import '../../ui/components/rate/EditRate.js';
+import '../../ui/components/children/Children.js';
+import '../../ui/components/children/child.js';
+import '../../ui/components/children/EditChild.js';
 import '../../ui/pages/not-found/not-found.js';
 
 FlowRouter.route('/', {
@@ -16,7 +19,7 @@ FlowRouter.route('/', {
   },
 });
 FlowRouter.route('/rates', {
-  name: 'App.home',
+  name: 'Rates',
   action() {
     BlazeLayout.render('AppBody', { main: 'Rates' });
   },
@@ -31,6 +34,24 @@ FlowRouter.route('/rate/edit/:rateId', {
   name: 'EditRate',
   action() {
     BlazeLayout.render('AppBody', { main: 'EditRate' });
+  },
+});
+FlowRouter.route('/children', {
+  name: 'Children',
+  action() {
+    BlazeLayout.render('AppBody', { main: 'Children' });
+  },
+});
+FlowRouter.route('/child/:childId', {
+  name: 'Child',
+  action() {
+    BlazeLayout.render('AppBody', { main: 'Child' });
+  },
+});
+FlowRouter.route('/child/edit/:childId', {
+  name: 'EditChild',
+  action() {
+    BlazeLayout.render('AppBody', { main: 'EditChild' });
   },
 });
 FlowRouter.notFound = {

@@ -16,7 +16,7 @@ if (Meteor.isServer) {
     it('can add a new link', function () {
       const addLink = Meteor.server.method_handlers['rates.insert'];
 
-      addLink.apply({}, ['meteor.com', 'https://www.meteor.com']);
+      addLink.apply({}, ['meteor.com', 15]);
 
       assert.equal(Rates.find().count(), 1);
     });

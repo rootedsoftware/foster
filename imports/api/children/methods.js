@@ -5,13 +5,15 @@ import { check } from 'meteor/check';
 import { Children } from './children';
 
 Meteor.methods({
-  'children.insert'(name, age) {
+  'children.insert'(name, age, rateId) {
     check(name, String);
     check(age, Number);
+    check(rateId, String);
 
     return Children.insert({
       name,
       age,
+      rateId
     });
   },
   'children.remove'(_id) {

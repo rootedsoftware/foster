@@ -3,6 +3,12 @@
     <form class="child-add">
       <input type="text" name="name" placeholder="Name" required>
       <input type="number" name="age" placeholder="15" step="1" min="0" required>
+      <select name="rateId" required>
+          <option value="" disabled selected>Pick one...</option>
+          {{#each rates}}
+            <option value="{{_id}}">{{name}} {{amount}}</option>
+          {{/each}}
+      </select>
       <input type="submit" value="Add new child">
     </form>
     <ul>

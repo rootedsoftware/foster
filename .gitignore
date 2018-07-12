@@ -1,2 +1,8 @@
-node_modules/
-.vscode/
+.uploads
+settings.json
+.vscode
+.DS_Store
+npm-debug.log
+bundle.tar.gz
+node_modules
+.meteor/dev_bundle

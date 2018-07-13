@@ -1,0 +1,20 @@
+<template name="Placement">
+  <h2>Placement</h2>
+  <p>
+    {{#with placement}}
+      Child name: {{childName}}
+    <br />
+    Start Date: {{startDate}}
+    <br />
+    {{#if isActive}}
+    This is an active placement
+    {{else}}
+    This is not an active placement
+    {{/if}}
+    <br />
+    <button class="removePlacement">Remove</button>
+    <br />
+    <a href="/placement/edit/{{_id}}">Edit</a>
+    {{/with}}
+  </p>
+</template>

@@ -1,12 +1,6 @@
-// All children-related publications
-
 import { Meteor } from 'meteor/meteor';
-import { Children } from '../children.js';
+import { Children } from '../children';
 
-Meteor.publish('children.all', function () {
-  return Children.find();
-});
+Meteor.publish('children.all', () => Children.find());
 
-Meteor.publish('child', function (_id) {
-  return Children.find({_id});
-});
+Meteor.publish('child', _id => Children.find({ _id }));

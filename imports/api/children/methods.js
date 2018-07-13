@@ -1,30 +1,29 @@
-// Methods related to children
-
 import { Meteor } from 'meteor/meteor';
-import { check } from 'meteor/check';
+import { check, Match } from 'meteor/check';
 import { Children } from './children';
 
 Meteor.methods({
-  'children.insert'(name, age, rateId) {
+  'children.insert': function(name, age, rateId) {
     check(name, String);
     check(age, Number);
-    check(rateId, String);
+    check(rateId, Match.Maybe(String));
 
     return Children.insert({
       name,
       age,
-      rateId
+      rateId,
     });
   },
-  'children.remove'(_id) {
+  'children.remove': function(_id) {
     check(_id, String);
     return Children.remove({
-      _id
+      _id,
     });
   },
-  'child.update'(_id, age, name) {
+  'child.update': function(_id, age, name) {
+    check(_id, String);
     check(age, String);
     check(name, String);
-    return Children.update({_id}, { $set: { age, name } });
+    return Children.update({ _id }, { $set: { age, name } });
   },
 });

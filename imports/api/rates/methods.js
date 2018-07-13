@@ -21,6 +21,7 @@ Meteor.methods({
     });
   },
   'rates.update'(_id, dailyAmount, name) {
+    check(_id, String);
     check(dailyAmount, String);
     check(name, String);
     return Rates.update({_id}, { $set: { dailyAmount, name } });

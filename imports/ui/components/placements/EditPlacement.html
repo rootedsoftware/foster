@@ -1,0 +1,23 @@
+<template name="EditPlacement">
+  <h1>
+    Edit placement page
+  </h1>
+  <p>
+    {{#with placement}}
+    <form>
+      <input type="date" id="startDate" value="{{startDate}}" />
+      <input type="date" id="endDate" value="{{endDate}}" />
+      <select name="isActive" required>
+        <option value="" disabled selected>Pick one...</option>
+        <option value="yes">Yes</option>
+        <option value="no">No</option>
+      </select>
+      <input type="hidden" id="_id" value="{{_id}}" />
+      <button type="submit">Update</button>
+    </form>
+    {{/with}}
+  </p>
+  <p>
+    <a href="/">Go Home</a>
+  </p>
+</template>

@@ -1,26 +1,26 @@
 import './EditChild.html';
 import { Children } from '../../../api/children/children';
 
-Template.EditChild.onCreated(function() {
+Template.EditChild.onCreated(() => {
   Meteor.subscribe('child', FlowRouter.current().params.childId);
 });
 
 Template.EditChild.helpers({
-  rate: function() {
+  child() {
     return Children.findOne();
-  }
+  },
 });
 
 Template.EditChild.events({
-  'submit form'(event) {
-    event.preventDefault()
+  'submit form': function(event) {
+    event.preventDefault();
     const { _id, age, name } = event.target;
-    Meteor.call('child.update', _id.value, age.value, name.value, function(error) {
+    Meteor.call('child.update', _id.value, age.value, name.value, (error) => {
       if (error) {
         alert(error.error);
       } else {
         alert('Updated');
       }
     });
-  }
-})
+  },
+});

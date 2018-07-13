@@ -1,0 +1,43 @@
+<template name="Placements">
+  <h2>Placements</h2>
+  <form class="placement-add">
+    <p>
+      <label for="startDate">Start Date</label>
+      <input type="date" name="startDate" required>
+    </p>
+    <p>
+      <label for="endDate">End Date</label>
+      <input type="date" name="endDate">
+    </p>
+    <p>
+      <label for="isActive">Is the child still placed with you?</label>
+      <select name="isActive" required>
+        <option value="" disabled selected>Pick one...</option>
+        <option value="yes">Yes</option>
+        <option value="no">No</option>
+      </select>
+    </p>
+    <p>
+      <label for="child">Child</label>
+      <select name="childId" required>
+        <option value="" disabled selected>Pick one...</option>
+        {{#each children}}
+        <option value="{{_id}}">{{name}}</option>
+        {{/each}}
+      </select>
+    </p>
+    <p>
+      <input type="submit" value="Add new placement">
+    </p>
+
+  </form>
+  <ul>
+    {{#each placements}}
+    <li>
+      <a href="placement/{{_id}}">{{childName}} - {{formattedDate startDate}}{{#if endDate}} - {{formattedDate endDate}}{{/if}} - {{#if isActive}}Is
+        currenlty placed{{else}} Is not currently placed{{/if}}</a>
+      <button class="removePlacement">Remove</button>
+    </li>
+    {{/each}}
+  </ul>
+</template>

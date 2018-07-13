@@ -15,6 +15,10 @@ Meteor.startup(() => {
         name: 'Regular',
         dailyAmount: 30,
       },
+      {
+        name: 'Family',
+        dailyAmount: 20,
+      },
     ];
 
     data.forEach(link => Rates.insert(link));

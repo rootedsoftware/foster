@@ -26,3 +26,4 @@ johanbrook:publication-collector  # Test a Meteor publication by collecting its 
 msavin:mongol
 underscore@1.0.10
 audit-argument-checks
+fourseven:scss

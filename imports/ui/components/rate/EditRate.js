@@ -1,6 +1,7 @@
 import { Meteor } from 'meteor/meteor';
 import { Template } from 'meteor/templating';
 import './EditRate.html';
+import toastr from 'toastr';
 import { Rates } from '../../../api/rates/rates';
 
 Template.EditRate.onCreated(() => {
@@ -24,7 +25,7 @@ Template.EditRate.events({
       name.value,
       (error) => {
         if (error) {
-          alert(error.error);
+          toastr.error(error.error);
         } else {
           alert('Updated');
         }

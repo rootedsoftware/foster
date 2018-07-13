@@ -1,5 +1,6 @@
 import { Meteor } from 'meteor/meteor';
 import { Template } from 'meteor/templating';
+import toastr from 'toastr';
 import { Children } from '../../../api/children/children';
 import {
   Placements,
@@ -42,7 +43,7 @@ Template.Placements.events({
       childId.value,
       (error) => {
         if (error) {
-          alert(error.error);
+          toastr.error(error.error);
         } else {
           startDate.value = '';
           endDate.value = '';

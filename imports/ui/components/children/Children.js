@@ -1,5 +1,6 @@
 import { Meteor } from 'meteor/meteor';
 import { Template } from 'meteor/templating';
+import toastr from 'toastr';
 import { Rates } from '../../../api/rates/rates';
 import { Children, removeChild } from '../../../api/children/children';
 import './Children.html';
@@ -31,7 +32,7 @@ Template.Children.events({
       rateId.value,
       (error) => {
         if (error) {
-          alert(error.error);
+          toastr.error(error.error);
         } else {
           name.value = '';
           age.value = '';

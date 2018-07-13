@@ -1,5 +1,6 @@
 import { Meteor } from 'meteor/meteor';
 import { Template } from 'meteor/templating';
+import toastr from 'toastr';
 import { Rates, removeRate } from '../../../api/rates/rates';
 import './rates.html';
 
@@ -22,7 +23,7 @@ Template.Rates.events({
 
     Meteor.call('ratesInsert', name.value, Number(dailyAmount.value), (error) => {
       if (error) {
-        alert(error.error);
+        toastr.error(error.error);
       } else {
         name.value = '';
         dailyAmount.value = '';

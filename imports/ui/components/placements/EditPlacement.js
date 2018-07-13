@@ -1,6 +1,7 @@
 import { Template } from 'meteor/templating';
 import { Meteor } from 'meteor/meteor';
 import './EditPlacement.html';
+import toastr from 'toastr';
 import { Placements } from '../../../api/placements/placements';
 
 Template.EditPlacement.onCreated(() => {
@@ -28,7 +29,7 @@ Template.EditPlacement.events({
       childId.value,
       (error) => {
         if (error) {
-          alert(error.error);
+          toastr.error(error.error);
         } else {
           alert('Updated');
         }

@@ -5,7 +5,10 @@
     "es6": true
   },
   "globals": {
-    "FlowRouter": true
+    "FlowRouter": true,
+    "describe": true,
+    "beforeEach": true,
+    "it": true
   },
   "parserOptions": {
     "ecmaVersion": 2017,
@@ -16,6 +19,12 @@
       "error",
       {
         "ignore": ["^meteor/", "^/"]
+      }
+    ],
+    "import/no-extraneous-dependencies": [
+      "error",
+      {
+        "devDependencies": ["**/*.tests.js", "**/*.test.js"]
       }
     ],
     "strict": [2, "never"],

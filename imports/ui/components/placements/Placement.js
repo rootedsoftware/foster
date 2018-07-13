@@ -1,4 +1,3 @@
-import { Meteor } from 'meteor/meteor';
 import { Template } from 'meteor/templating';
 import {
   Placements,
@@ -6,10 +5,14 @@ import {
 } from '../../../api/placements/placements';
 import './Placement.html';
 import { Children } from '../../../api/children/children';
+import { Rates } from '../../../api/rates/rates';
 
-Template.Placement.onCreated(() => {
-  Meteor.subscribe('placement', FlowRouter.current().params.placementId);
-  Meteor.subscribe('children.all');
+Template.Placement.onCreated(function() {
+  this.autorun(() => {
+    this.subscribe('placement', FlowRouter.current().params.placementId);
+    this.subscribe('children.all');
+    this.subscribe('rates.all');
+  });
 });
 
 Template.Placement.helpers({
@@ -19,6 +22,10 @@ Template.Placement.helpers({
   },
   placement() {
     return Placements.findOne();
+  },
+  reimbursementRate() {
+    const rate = Rates.findOne({ _id: this.rateId });
+    return rate && rate.dailyAmount;
   },
 });
 

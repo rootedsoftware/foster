@@ -1,17 +1,37 @@
 <template name="EditPlacement">
   <h1>
-    Edit placement page
+    Edit placement
   </h1>
   <p>
     {{#with placement}}
+    <strong>Child Name: {{childName}}</strong>
     <form>
-      <input type="date" id="startDate" value="{{startDate}}" />
-      <input type="date" id="endDate" value="{{endDate}}" />
-      <select name="isActive" required>
-        <option value="" disabled selected>Pick one...</option>
-        <option value="yes">Yes</option>
-        <option value="no">No</option>
-      </select>
+      <p>
+        <label for="startDate">Start Date</label>
+        <input type="text" id="startDate" value="{{dateHTML startDate}}" required/>
+      </p>
+      <p>
+        <label for="endDate">End Date</label>
+        <input type="date" id="endDate" value="{{dateHTML endDate}}" />
+
+      </p>
+      <p>
+        <label for="isActive">Is the child still placed with you?</label>
+        <select name="isActive" required>
+          <option value="" disabled selected>Pick one...</option>
+          <option value="yes">Yes</option>
+          <option value="no">No</option>
+        </select>
+      </p>
+      <p>
+        <label for="rateId">Reimbursement Rate</label>
+        <select name="rateId">
+          <option value="" disabled selected>Pick one...</option>
+          {{#each rates}}
+          <option value="{{_id}}">{{name}} {{amount}}</option>
+          {{/each}}
+        </select>
+      </p>
       <input type="hidden" id="_id" value="{{_id}}" />
       <button type="submit">Update</button>
     </form>

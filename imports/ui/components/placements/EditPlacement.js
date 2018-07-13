@@ -3,14 +3,26 @@ import { Meteor } from 'meteor/meteor';
 import './EditPlacement.html';
 import toastr from 'toastr';
 import { Placements } from '../../../api/placements/placements';
+import { Rates } from '../../../api/rates/rates';
+import { Children } from '../../../api/children/children';
 
-Template.EditPlacement.onCreated(() => {
-  Meteor.subscribe('placement', FlowRouter.current().params.placementId);
+Template.EditPlacement.onCreated(function() {
+  this.autorun(() => {
+    this.subscribe('placement', FlowRouter.current().params.placementId);
+    this.subscribe('children.all');
+  });
 });
 
 Template.EditPlacement.helpers({
   placement() {
     return Placements.findOne();
+  },
+  rates() {
+    return Rates.find();
+  },
+  childName() {
+    const child = Children.findOne({ _id: this.childId });
+    return child && child.name;
   },
 });
 
@@ -23,8 +35,8 @@ Template.EditPlacement.events({
     Meteor.call(
       'placementUpdate',
       _id.value,
-      startDate.value,
-      endDate.value,
+      new Date(startDate.value),
+      endDate.value ? new Date(endDate.value) : null,
       isActive.value,
       childId.value,
       (error) => {

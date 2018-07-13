@@ -27,6 +27,15 @@
       </select>
     </p>
     <p>
+      <label for="rateId">Reimbursement Rate</label>
+      <select name="rateId">
+        <option value="" disabled selected>Pick one...</option>
+        {{#each rates}}
+        <option value="{{_id}}">{{name}} {{amount}}</option>
+        {{/each}}
+      </select>
+    </p>
+    <p>
       <input type="submit" value="Add new placement">
     </p>
 

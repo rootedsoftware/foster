@@ -1,17 +1,21 @@
 import { Meteor } from 'meteor/meteor';
 import { Template } from 'meteor/templating';
 import toastr from 'toastr';
-import { Children } from '../../../api/children/children';
 import {
   Placements,
   removePlacement
 } from '../../../api/placements/placements';
+import { Children } from '../../../api/children/children';
+import { Rates } from '../../../api/rates/rates';
 import './Placements.html';
 import '../../stylesheets/styles.css';
 
-Template.Placements.onCreated(() => {
-  Meteor.subscribe('placements.all');
-  Meteor.subscribe('children.all');
+Template.Placements.onCreated(function() {
+  this.autorun(() => {
+    this.subscribe('placements.all');
+    this.subscribe('children.all');
+    this.subscribe('rates.all');
+  });
 });
 
 Template.Placements.helpers({
@@ -20,6 +24,9 @@ Template.Placements.helpers({
   },
   children() {
     return Children.find({});
+  },
+  rates() {
+    return Rates.find();
   },
   childName() {
     const child = Children.findOne({ _id: this.childId });
@@ -32,7 +39,7 @@ Template.Placements.events({
     event.preventDefault();
 
     const {
-      startDate, endDate, isActive, childId,
+      startDate, endDate, isActive, childId, rateId,
     } = event.target;
 
     Meteor.call(
@@ -41,6 +48,7 @@ Template.Placements.events({
       endDate.value ? new Date(endDate.value) : null,
       isActive.value === 'yes',
       childId.value,
+      rateId.value,
       (error) => {
         if (error) {
           toastr.error(error.error);
@@ -49,6 +57,7 @@ Template.Placements.events({
           endDate.value = '';
           isActive.value = '';
           childId.value = '';
+          rateId.value = '';
         }
       }
     );

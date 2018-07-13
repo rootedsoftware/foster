@@ -1,14 +1,12 @@
-// Tests for the behavior of the rates collection
-//
-// https://guide.meteor.com/testing.html
-
-import { Meteor } from 'meteor/meteor';
 import { assert } from 'chai';
-import { Rates } from './rates.js';
+import { Meteor } from 'meteor/meteor';
+import { Rates } from './rates';
+
+/* eslint prefer-arrow-callback: "off" */
 
 if (Meteor.isServer) {
-  describe('rates collection', function () {
-    it('insert correctly', function () {
+  describe('rates collection', function() {
+    it('insert correctly', function() {
       const rateId = Rates.insert({
         name: 'Respite',
         dailyAmount: 15,

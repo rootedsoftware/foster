@@ -1,4 +1,3 @@
-import moment from 'moment';
 import { Meteor } from 'meteor/meteor';
 import { Template } from 'meteor/templating';
 import { Children } from '../../../api/children/children';

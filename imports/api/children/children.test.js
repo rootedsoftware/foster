@@ -1,10 +1,12 @@
 import { Meteor } from 'meteor/meteor';
 import { assert } from 'chai';
-import { Children } from './children.js';
+import { Children } from './children';
+
+/* eslint prefer-arrow-callback: "off" */
 
 if (Meteor.isServer) {
-  describe('children collection', function () {
-    it('insert correctly', function () {
+  describe('children collection', function() {
+    it('insert correctly', function() {
       const childId = Children.insert({
         name: 'Johnny',
         age: 15,

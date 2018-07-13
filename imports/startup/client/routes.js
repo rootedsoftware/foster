@@ -2,22 +2,22 @@ import { FlowRouter } from 'meteor/kadira:flow-router';
 import { BlazeLayout } from 'meteor/kadira:blaze-layout';
 
 // Import needed templates
-import '../../ui/layouts/body/body.js';
-import '../../ui/pages/home/home.js';
+import '../../ui/layouts/body/body';
+import '../../ui/pages/home/home';
 
-import '../../ui/components/rates/rates.js';
-import '../../ui/components/rate/rate.js';
-import '../../ui/components/rate/EditRate.js';
+import '../../ui/components/rates/rates';
+import '../../ui/components/rate/rate';
+import '../../ui/components/rate/EditRate';
 
-import '../../ui/components/children/Children.js';
-import '../../ui/components/children/child.js';
-import '../../ui/components/children/EditChild.js';
+import '../../ui/components/children/Children';
+import '../../ui/components/children/child';
+import '../../ui/components/children/EditChild';
 
-import '../../ui/components/placements/Placements.js';
-import '../../ui/components/placements/Placement.js';
-import '../../ui/components/placements/EditPlacement.js';
+import '../../ui/components/placements/Placements';
+import '../../ui/components/placements/Placement';
+import '../../ui/components/placements/EditPlacement';
 
-import '../../ui/pages/not-found/not-found.js';
+import '../../ui/pages/not-found/not-found';
 
 FlowRouter.route('/', {
   name: 'App.home',
@@ -61,7 +61,6 @@ FlowRouter.route('/child/edit/:childId', {
     BlazeLayout.render('AppBody', { main: 'EditChild' });
   },
 });
-
 
 FlowRouter.route('/placements', {
   name: 'Placements',

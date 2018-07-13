@@ -1,9 +1,5 @@
-import {
-  Meteor
-} from 'meteor/meteor';
-import {
-  Mongo
-} from 'meteor/mongo';
+import { Meteor } from 'meteor/meteor';
+import { Mongo } from 'meteor/mongo';
 
 export const Placements = new Mongo.Collection('placements');
 

@@ -1,11 +1,9 @@
-// Methods related to rates
-
 import { Meteor } from 'meteor/meteor';
 import { check } from 'meteor/check';
 import { Rates } from './rates';
 
 Meteor.methods({
-  'rates.insert'(name, dailyAmount) {
+  ratesInsert(name, dailyAmount) {
     check(name, String);
     check(dailyAmount, Number);
 
@@ -14,16 +12,16 @@ Meteor.methods({
       dailyAmount,
     });
   },
-  'rates.remove'(_id) {
+  'rates.remove': function(_id) {
     check(_id, String);
     return Rates.remove({
-      _id
+      _id,
     });
   },
-  'rates.update'(_id, dailyAmount, name) {
+  'rates.update': function(_id, dailyAmount, name) {
     check(_id, String);
     check(dailyAmount, String);
     check(name, String);
-    return Rates.update({_id}, { $set: { dailyAmount, name } });
+    return Rates.update({ _id }, { $set: { dailyAmount, name } });
   },
 });

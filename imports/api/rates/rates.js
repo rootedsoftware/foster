@@ -1,9 +1,7 @@
-// Definition of the rates collection
-
+import { Meteor } from 'meteor/meteor';
 import { Mongo } from 'meteor/mongo';
 
 export const Rates = new Mongo.Collection('rates');
-
 
 export const removeRate = (_id) => {
   Meteor.call('rates.remove', _id, (error) => {
@@ -11,4 +9,4 @@ export const removeRate = (_id) => {
       alert(error.error);
     }
   });
-}
+};

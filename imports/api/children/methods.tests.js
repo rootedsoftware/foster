@@ -1,16 +1,18 @@
-import { Meteor } from 'meteor/meteor';
 import { assert } from 'chai';
-import { Children } from './children.js';
-import './methods.js';
+import { Meteor } from 'meteor/meteor';
+import { Children } from './children';
+import './methods';
+
+/* eslint prefer-arrow-callback: "off" */
 
 if (Meteor.isServer) {
-  describe('children methods', function () {
-    beforeEach(function () {
+  describe('children methods', function() {
+    beforeEach(function() {
       Children.remove({});
     });
 
-    it('can add a new link', function () {
-      const addLink = Meteor.server.method_handlers['children.insert'];
+    it('can add a new link', function() {
+      const addLink = Meteor.server.method_handlers.childrenInsert;
 
       addLink.apply({}, ['John', 11]);
 

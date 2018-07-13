@@ -1,15 +1,17 @@
-import { Meteor } from 'meteor/meteor';
 import { assert } from 'chai';
-import { Placements } from './placements.js';
+import { Meteor } from 'meteor/meteor';
+import { Placements } from './placements';
+
+/* eslint prefer-arrow-callback: "off" */
 
 if (Meteor.isServer) {
-  describe('placements collection', function () {
-    it('insert correctly', function () {
+  describe('placements collection', function() {
+    it('insert correctly', function() {
       const placementId = Placements.insert({
         childId: '8Sf912SSfsdfi',
         startDate: new Date(),
         endDate: new Date(),
-        isActive: true
+        isActive: true,
       });
       const added = Placements.find({ _id: placementId });
       const collectionName = added._getCollectionName();

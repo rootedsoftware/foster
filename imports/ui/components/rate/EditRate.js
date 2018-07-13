@@ -1,26 +1,34 @@
+import { Meteor } from 'meteor/meteor';
+import { Template } from 'meteor/templating';
 import './EditRate.html';
 import { Rates } from '../../../api/rates/rates';
 
-Template.EditRate.onCreated(function() {
+Template.EditRate.onCreated(() => {
   Meteor.subscribe('rate', FlowRouter.current().params.rateId);
 });
 
 Template.EditRate.helpers({
-  rate: function() {
+  rate() {
     return Rates.findOne();
-  }
+  },
 });
 
 Template.EditRate.events({
-  'submit form'(event) {
-    event.preventDefault()
+  'submit form': function(event) {
+    event.preventDefault();
     const { _id, dailyAmount, name } = event.target;
-    Meteor.call('rates.update', _id.value, dailyAmount.value, name.value, function(error) {
-      if (error) {
-        alert(error.error);
-      } else {
-        alert('Updated');
+    Meteor.call(
+      'rates.update',
+      _id.value,
+      dailyAmount.value,
+      name.value,
+      (error) => {
+        if (error) {
+          alert(error.error);
+        } else {
+          alert('Updated');
+        }
       }
-    });
-  }
-})
+    );
+  },
+});

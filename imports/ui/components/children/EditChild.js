@@ -1,3 +1,5 @@
+import { Meteor } from 'meteor/meteor';
+import { Template } from 'meteor/templating';
 import './EditChild.html';
 import { Children } from '../../../api/children/children';
 
@@ -15,7 +17,7 @@ Template.EditChild.events({
   'submit form': function(event) {
     event.preventDefault();
     const { _id, age, name } = event.target;
-    Meteor.call('child.update', _id.value, age.value, name.value, (error) => {
+    Meteor.call('childUpdate', _id.value, age.value, name.value, (error) => {
       if (error) {
         alert(error.error);
       } else {

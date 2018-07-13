@@ -1,13 +1,6 @@
-// All rates-related publications
-
 import { Meteor } from 'meteor/meteor';
-import { Rates } from '../rates.js';
+import { Rates } from '../rates';
 
-Meteor.publish('rates.all', function () {
-  return Rates.find();
-});
+Meteor.publish('rates.all', () => Rates.find());
 
-Meteor.publish('rate', function (_id) {
-  console.log(`got to rate subscription with _id: ${_id}`)
-  return Rates.find({_id});
-});
+Meteor.publish('rate', _id => Rates.find({ _id }));

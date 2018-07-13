@@ -1,20 +1,18 @@
-// Tests for rates methods
-//
-// https://guide.meteor.com/testing.html
-
-import { Meteor } from 'meteor/meteor';
 import { assert } from 'chai';
-import { Rates } from './rates.js';
-import './methods.js';
+import { Meteor } from 'meteor/meteor';
+import { Rates } from './rates';
+import './methods';
+
+/* eslint prefer-arrow-callback: "off" */
 
 if (Meteor.isServer) {
-  describe('rates methods', function () {
-    beforeEach(function () {
+  describe('rates methods', function() {
+    beforeEach(function() {
       Rates.remove({});
     });
 
-    it('can add a new link', function () {
-      const addLink = Meteor.server.method_handlers['rates.insert'];
+    it('can add a new link', function() {
+      const addLink = Meteor.server.method_handlers.ratesInsert;
 
       addLink.apply({}, ['meteor.com', 15]);
 

@@ -1,14 +1,12 @@
-// Tests for the children publications
-//
-// https://guide.meteor.com/testing.html
-
 import { assert } from 'chai';
-import { Children } from '../children.js';
 import { PublicationCollector } from 'meteor/johanbrook:publication-collector';
-import './publications.js';
+import { Children } from '../children';
+import './publications';
 
-describe('children publications', function () {
-  beforeEach(function () {
+/* eslint prefer-arrow-callback: "off" */
+
+describe('children publications', function() {
+  beforeEach(function() {
     Children.remove({});
     Children.insert({
       name: 'Johnny',
@@ -16,8 +14,8 @@ describe('children publications', function () {
     });
   });
 
-  describe('children.all', function () {
-    it('sends all children', function (done) {
+  describe('children.all', function() {
+    it('sends all children', function(done) {
       const collector = new PublicationCollector();
       collector.collect('children.all', (collections) => {
         assert.equal(collections.children.length, 1);

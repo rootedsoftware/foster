@@ -1,26 +1,24 @@
 import { Meteor } from 'meteor/meteor';
-import { check, Match } from 'meteor/check';
+import { check } from 'meteor/check';
 import { Children } from './children';
 
 Meteor.methods({
-  'children.insert': function(name, age, rateId) {
+  childrenInsert(name, age) {
     check(name, String);
     check(age, Number);
-    check(rateId, Match.Maybe(String));
 
     return Children.insert({
       name,
       age,
-      rateId,
     });
   },
-  'children.remove': function(_id) {
+  childrenRemove(_id) {
     check(_id, String);
     return Children.remove({
       _id,
     });
   },
-  'child.update': function(_id, age, name) {
+  childUpdate(_id, age, name) {
     check(_id, String);
     check(age, String);
     check(name, String);

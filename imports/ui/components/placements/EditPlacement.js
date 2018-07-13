@@ -20,7 +20,7 @@ Template.EditPlacement.events({
       _id, startDate, endDate, isActive, childId,
     } = event.target;
     Meteor.call(
-      'placement.update',
+      'placementUpdate',
       _id.value,
       startDate.value,
       endDate.value,

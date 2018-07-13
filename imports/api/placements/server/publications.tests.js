@@ -1,21 +1,23 @@
 import { assert } from 'chai';
-import { Placements } from '../placements.js';
 import { PublicationCollector } from 'meteor/johanbrook:publication-collector';
-import './publications.js';
+import { Placements } from '../placements';
+import './publications';
 
-describe('placements publications', function () {
-  beforeEach(function () {
+/* eslint prefer-arrow-callback: "off" */
+
+describe('placements publications', function() {
+  beforeEach(function() {
     Placements.remove({});
     Placements.insert({
       childId: '8Sf912SSfsdfi',
       startDate: new Date(),
       endDate: new Date(),
-      isActive: true
+      isActive: true,
     });
   });
 
-  describe('placements.all', function () {
-    it('sends all placements', function (done) {
+  describe('placements.all', function() {
+    it('sends all placements', function(done) {
       const collector = new PublicationCollector();
       collector.collect('placements.all', (collections) => {
         assert.equal(collections.placements.length, 1);

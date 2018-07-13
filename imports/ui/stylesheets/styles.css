@@ -13,3 +13,12 @@ label {
 input {
   display: table-cell;
 }
+
+.topPad {
+  padding-top: 20px;
+}
+
+.verticalPad {
+  padding-top: 20px;
+  padding-bottom: 20px;
+}

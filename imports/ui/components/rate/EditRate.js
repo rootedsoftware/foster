@@ -27,7 +27,7 @@ Template.EditRate.events({
         if (error) {
           toastr.error(error.error);
         } else {
-          alert('Updated');
+          toastr.success('Updated');
         }
       }
     );

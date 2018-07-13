@@ -1,7 +1,7 @@
 .uploads
 settings.json
 .vscode
-.DS_Store
+**/.DS_Store
 npm-debug.log
 bundle.tar.gz
 node_modules

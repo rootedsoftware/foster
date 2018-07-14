@@ -10,6 +10,7 @@ Template.EditPlacement.onCreated(function() {
   this.autorun(() => {
     this.subscribe('placement', FlowRouter.current().params.placementId);
     this.subscribe('children.all');
+    this.subscribe('rates.all');
   });
 });
 

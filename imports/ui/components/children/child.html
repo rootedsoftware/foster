@@ -1,14 +1,19 @@
 <template name="Child">
   <h2>Child</h2>
-  <p>
+  <div>
     {{#with child}}
-    Child name: {{name}}
-    <br />
-    Child amount: {{dailyAmount}}
-    <br />
-    <button class="removeChild">Remove</button>
-    <br />
-    <a href="/child/edit/{{_id}}">Edit</a>
+    <p>
+      Child name: {{name}}
+    </p>
+    <p>
+      Child Age: {{age}}
+    </p>
+    <p>
+      <button class="removeChild">Remove</button>
+    </p>
+    <p>
+      <a href="/child/edit/{{_id}}">Edit</a>
+    </p>
     {{/with}}
-  </p>
+  </div>
 </template>

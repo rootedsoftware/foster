@@ -1,9 +1,17 @@
 <template name="Children">
   <h2>Children</h2>
   <form class="child-add">
-    <input type="text" name="name" placeholder="Name" required>
-    <input type="number" name="age" placeholder="15" step="1" min="0" required>
-    <input type="submit" value="Add new child">
+    <p>
+      <label for="name">Name</label>
+      <input type="text" name="name" placeholder="Name" required>
+    </p>
+    <p>
+      <label for="age">Age</label>
+      <input type="number" name="age" placeholder="15" step="1" min="0" required>
+    </p>
+    <p>
+      <input type="submit" value="Add new child">
+    </p>
   </form>
   <ul>
     {{#each children}}

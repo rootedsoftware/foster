@@ -4,12 +4,20 @@
   </h1>
   <p>
     {{#with child}}
-      <form>
+    <form>
+      <p>
+        <label for="name">Name</label>
         <input type="text" id="name" value="{{name}}" />
+      </p>
+      <p>
+        <label for="age">Age</label>
         <input type="text" id="age" value="{{age}}" />
-        <input type="hidden" id="_id" value="{{_id}}" />
+      </p>
+      <input type="hidden" id="_id" value="{{_id}}" />
+      <p>
         <button type="submit">Update</button>
-      </form>
+      </p>
+    </form>
     {{/with}}
   </p>
   <p>

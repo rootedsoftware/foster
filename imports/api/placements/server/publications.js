@@ -6,6 +6,5 @@ Meteor.publish('placements.all', () => Placements.find());
 
 Meteor.publish('placement', (_id) => {
   check(_id, String);
-
   return Placements.find({ _id });
 });

@@ -7,3 +7,8 @@ Template.registerHelper(
   'dateHTML',
   date => date && moment.utc(date).format('MM/DD/YYYY')
 );
+
+Template.registerHelper(
+  'selected',
+  (targetValue, optionValue) => (targetValue === optionValue ? 'selected' : '')
+);

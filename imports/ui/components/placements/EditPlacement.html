@@ -18,9 +18,8 @@
       <p>
         <label for="isActive">Is the child still placed with you?</label>
         <select name="isActive" required>
-          <option value="" disabled selected>Pick one...</option>
-          <option value="yes">Yes</option>
-          <option value="no">No</option>
+          <option value="yes" {{selected isActive 'yes'}}>Yes</option>
+          <option value="no" {{selected isActive 'no'}}>No</option>
         </select>
       </p>
       <p>
@@ -28,7 +27,7 @@
         <select name="rateId">
           <option value="" disabled selected>Pick one...</option>
           {{#each rates}}
-          <option value="{{_id}}">{{name}} {{amount}}</option>
+          <option value="{{_id}}" {{selected _id ../rateId}}>{{name}} {{amount}}</option>
           {{/each}}
         </select>
       </p>

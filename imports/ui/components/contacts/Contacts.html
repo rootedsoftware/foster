@@ -1,0 +1,28 @@
+<template name="Contacts">
+  <h2>Contacts</h2>
+  <form class="contact-add">
+    <p>
+      <label for="name">Name</label>
+      <input type="text" name="name" placeholder="Name" required>
+    </p>
+    <p>
+      <label for="title">Title</label>
+      <input type="text" name="title" placeholder="Case Worker">
+    </p>
+    <p>
+      <label for="phoneNumber">Phone Number</label>
+      <input type="tel" name="phoneNumber" placeholder="(394) 234-2495">
+    </p>
+    <p>
+      <input type="submit" value="Add new contact">
+    </p>
+  </form>
+  <ul>
+    {{#each contacts}}
+    <li>
+      <a href="contact/{{_id}}">{{name}} - {{title}} - {{phoneNumber}}</a>
+      <button class="removeContact">Remove</button>
+    </li>
+    {{/each}}
+  </ul>
+</template>

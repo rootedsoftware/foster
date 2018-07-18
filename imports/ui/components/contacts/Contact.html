@@ -1,0 +1,22 @@
+<template name="Contact">
+  <h2>Contact</h2>
+  <div>
+    {{#with contact}}
+    <p>
+      Contact name: {{name}}
+    </p>
+    <p>
+      Title: {{title}}
+    </p>
+    <p>
+      Phone: {{phoneNumber}}
+    </p>
+    <p>
+      <button class="removeContact">Remove</button>
+    </p>
+    <p>
+      <a href="/contact/edit/{{_id}}">Edit</a>
+    </p>
+    {{/with}}
+  </div>
+</template>

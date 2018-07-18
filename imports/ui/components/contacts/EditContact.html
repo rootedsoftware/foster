@@ -1,0 +1,30 @@
+<template name="EditContact">
+  <h1>
+    Edit contact page
+  </h1>
+  <p>
+    {{#with contact}}
+    <form>
+      <p>
+        <label for="name">Name</label>
+        <input type="text" id="name" value="{{name}}" />
+      </p>
+      <p>
+        <label for="title">Title</label>
+        <input type="text" id="title" value="{{title}}" />
+      </p>
+      <p>
+        <label for="phoneNumber">Phone Number</label>
+        <input type="tel" id="phoneNumber" value="{{phoneNumber}}" />
+      </p>
+      <input type="hidden" id="_id" value="{{_id}}" />
+      <p>
+        <button type="submit">Update</button>
+      </p>
+    </form>
+    {{/with}}
+  </p>
+  <p>
+    <a href="/">Go Home</a>
+  </p>
+</template>

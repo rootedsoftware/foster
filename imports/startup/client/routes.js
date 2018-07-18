@@ -17,6 +17,10 @@ import '../../ui/components/placements/Placements';
 import '../../ui/components/placements/Placement';
 import '../../ui/components/placements/EditPlacement';
 
+import '../../ui/components/contacts/Contacts';
+import '../../ui/components/contacts/Contact';
+import '../../ui/components/contacts/EditContact';
+
 import '../../ui/pages/not-found/not-found';
 
 FlowRouter.route('/', {
@@ -78,6 +82,25 @@ FlowRouter.route('/placement/edit/:placementId', {
   name: 'EditPlacement',
   action() {
     BlazeLayout.render('AppBody', { main: 'EditPlacement' });
+  },
+});
+
+FlowRouter.route('/contacts', {
+  name: 'Contacts',
+  action() {
+    BlazeLayout.render('AppBody', { main: 'Contacts' });
+  },
+});
+FlowRouter.route('/contact/:contactId', {
+  name: 'Contact',
+  action() {
+    BlazeLayout.render('AppBody', { main: 'Contact' });
+  },
+});
+FlowRouter.route('/contact/edit/:contactId', {
+  name: 'EditContact',
+  action() {
+    BlazeLayout.render('AppBody', { main: 'EditContact' });
   },
 });
 

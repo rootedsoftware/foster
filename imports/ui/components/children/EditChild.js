@@ -18,7 +18,7 @@ Template.EditChild.events({
   'submit form': function(event) {
     event.preventDefault();
     const { _id, age, name } = event.target;
-    Meteor.call('childUpdate', _id.value, age.value, name.value, (error) => {
+    Meteor.call('childUpdate', _id.value, Number(age.value), name.value, (error) => {
       if (error) {
         toastr.error(error.error);
       } else {

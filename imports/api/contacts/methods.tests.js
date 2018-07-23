@@ -14,7 +14,7 @@ if (Meteor.isServer) {
     it('can add a new link', function() {
       const addLink = Meteor.server.method_handlers.contactsInsert;
 
-      addLink.apply({}, ['John', 11]);
+      addLink.apply({}, ['John', 'Case Worker', '555-1233']);
 
       assert.equal(Contacts.find().count(), 1);
     });

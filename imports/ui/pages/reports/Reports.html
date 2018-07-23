@@ -1,0 +1,7 @@
+<template name="Reports">
+  {{#if Template.subscriptionsReady}} {{#each placements}}
+  <p>
+    {{childName}} {{numberOfDaysPlacedThisMonth}} days @${{rate}}/day = ${{totalReimbursement}}
+  </p>
+  {{/each}} {{/if}}
+</template>

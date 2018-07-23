@@ -5,6 +5,8 @@ import { BlazeLayout } from 'meteor/kadira:blaze-layout';
 import '../../ui/layouts/body/body';
 import '../../ui/pages/home/home';
 
+import '../../ui/pages/not-found/not-found';
+
 import '../../ui/components/rates/rates';
 import '../../ui/components/rate/rate';
 import '../../ui/components/rate/EditRate';
@@ -21,7 +23,7 @@ import '../../ui/components/contacts/Contacts';
 import '../../ui/components/contacts/Contact';
 import '../../ui/components/contacts/EditContact';
 
-import '../../ui/pages/not-found/not-found';
+import '../../ui/pages/reports/Reports';
 
 FlowRouter.route('/', {
   name: 'App.home',
@@ -29,6 +31,13 @@ FlowRouter.route('/', {
     BlazeLayout.render('AppBody', { main: 'Home' });
   },
 });
+
+FlowRouter.notFound = {
+  action() {
+    BlazeLayout.render('AppBody', { main: 'App_notFound' });
+  },
+};
+
 FlowRouter.route('/rates', {
   name: 'Rates',
   action() {
@@ -104,8 +113,9 @@ FlowRouter.route('/contact/edit/:contactId', {
   },
 });
 
-FlowRouter.notFound = {
+FlowRouter.route('/reports', {
+  name: 'Reports',
   action() {
-    BlazeLayout.render('AppBody', { main: 'App_notFound' });
+    BlazeLayout.render('AppBody', { main: 'Reports' });
   },
-};
+});

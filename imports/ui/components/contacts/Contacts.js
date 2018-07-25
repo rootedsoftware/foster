@@ -19,18 +19,22 @@ Template.Contacts.events({
     event.preventDefault();
 
     const { name, title, phoneNumber } = event.target;
-    console.log({ name: name.value, title: title.value, phoneNumber: phoneNumber.value })
 
-    Meteor.call('contactsInsert', name.value, title.value, phoneNumber.value, (error) => {
-      if (error) {
-        console.log(error)
-        toastr.error(error.error);
-      } else {
-        name.value = '';
-        title.value = '';
-        phoneNumber.value = '';
+    Meteor.call(
+      'contactsInsert',
+      name.value,
+      title.value,
+      phoneNumber.value,
+      (error) => {
+        if (error) {
+          toastr.error(error.error);
+        } else {
+          name.value = '';
+          title.value = '';
+          phoneNumber.value = '';
+        }
       }
-    });
+    );
   },
   'click .removeContact': function() {
     removeContact(this._id);

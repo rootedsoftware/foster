@@ -1,4 +1,25 @@
 <template name="Reports">
+  <p>
+    <a href="/">Go Home</a>
+  </p>
+  <form>
+    <select id="month-selector">
+      <option value="" disabled>
+        Select one...
+      </option>
+      {{#each months}}
+      <option value="{{monthNumber}}">{{monthName}}</option>
+      {{/each}}
+    </select>
+    <select id="year-selector">
+      <option value="" disabled>
+        Select one...
+      </option>
+      {{#each years}}
+      <option value="{{this}}">{{this}}</option>
+      {{/each}}
+    </select>
+  </form>
   {{#if Template.subscriptionsReady}} {{#each placements}}
   <p>
     {{childName}} {{numberOfDaysPlacedThisMonth}} days @${{rate}}/day = ${{totalReimbursement}}

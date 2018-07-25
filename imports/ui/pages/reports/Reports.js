@@ -30,9 +30,14 @@ Template.Reports.onRendered(() => {
 });
 
 Template.Reports.events({
-  'change #month-selector': function(event, templateInstance) {
+  'change #month-selector, change #year-selector': function(
+    event,
+    templateInstance
+  ) {
     const selectedMonth = document.getElementById('month-selector').value;
+    const selectedYear = document.getElementById('year-selector').value;
     templateInstance.month.set(Number(selectedMonth) + 1);
+    templateInstance.year.set(Number(selectedYear));
   },
 });
 Template.Reports.helpers({

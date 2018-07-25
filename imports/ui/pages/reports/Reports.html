@@ -22,7 +22,10 @@
   </form>
   {{#if Template.subscriptionsReady}} {{#each placements}}
   <p>
-    <a href="/placement/{{_id}}">{{childName}} {{numberOfDaysPlacedThisMonth}} days @${{rate}}/day = ${{totalReimbursement}}</a>
+    <a href="/placement/{{_id}}">{{childName}} {{numberOfDaysPlacedThisMonth}} days @${{rate}}/day = $
+      <span class="total-reimbursement">{{totalReimbursement}}</span>
+    </a>
   </p>
   {{/each}} {{/if}}
+  <p>Total: ${{total}}</p>
 </template>

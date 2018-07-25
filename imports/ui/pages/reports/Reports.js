@@ -1,3 +1,4 @@
+import { Mongo } from 'meteor/mongo';
 import { Template } from 'meteor/templating';
 import { ReactiveVar } from 'meteor/reactive-var';
 import './Reports.html';
@@ -7,6 +8,8 @@ import { Rates } from '../../../api/rates/rates';
 import { calculateDaysInPlacement } from '../../../api/utilities';
 
 Template.Reports.onCreated(function() {
+  Reimbursements = new Mongo.Collection(null);
+
   this.month = new ReactiveVar(new Date().getMonth() + 1);
   this.year = new ReactiveVar(new Date().getFullYear());
   this.currentYearMonth = new ReactiveVar(
@@ -41,6 +44,13 @@ Template.Reports.events({
   },
 });
 Template.Reports.helpers({
+  total() {
+    let total = 0;
+    Reimbursements.find().forEach((reimbursement) => {
+      total += reimbursement.total;
+    });
+    return total;
+  },
   placements() {
     return Placements.find();
   },
@@ -89,7 +99,15 @@ Template.Reports.helpers({
       todaysDate
     );
 
-    return rate && rate.dailyAmount && rate.dailyAmount * daysInPlacement;
+    const total = rate && rate.dailyAmount && rate.dailyAmount * daysInPlacement;
+    Reimbursements.upsert(
+      { _id: this._id },
+      {
+        $set: { total },
+      }
+    );
+
+    return total;
   },
   months() {
     return [

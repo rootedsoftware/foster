@@ -7,12 +7,13 @@ import { Rates } from '../../../api/rates/rates';
 import { calculateDaysInPlacement } from '../../../api/utilities';
 
 Template.Reports.onCreated(function() {
+  this.month = new ReactiveVar(new Date().getMonth() + 1);
+  this.year = new ReactiveVar(new Date().getFullYear());
+  this.currentYearMonth = new ReactiveVar(
+    `${String(new Date().getFullYear())}-${String(new Date().getMonth() + 1)}`
+  );
+
   this.autorun(() => {
-    this.month = new ReactiveVar(new Date().getMonth() + 1);
-    this.year = new ReactiveVar(new Date().getFullYear());
-    this.currentYearMonth = new ReactiveVar(
-      `${String(new Date().getFullYear())}-${String(new Date().getMonth() + 1)}`
-    );
     this.subscribe(
       'placementByMonth',
       this.month.get(),
@@ -24,6 +25,16 @@ Template.Reports.onCreated(function() {
   });
 });
 
+Template.Reports.onRendered(() => {
+  document.getElementById('month-selector').value = new Date().getMonth();
+});
+
+Template.Reports.events({
+  'change #month-selector': function(event, templateInstance) {
+    const selectedMonth = document.getElementById('month-selector').value;
+    templateInstance.month.set(Number(selectedMonth) + 1);
+  },
+});
 Template.Reports.helpers({
   placements() {
     return Placements.find();
@@ -38,14 +49,15 @@ Template.Reports.helpers({
     const year = templateInstance.year.get();
     const month = templateInstance.month.get();
     const currentYearMonth = templateInstance.currentYearMonth.get();
-
+    const todaysDate = new Date().getDate();
     const daysInPlacement = calculateDaysInPlacement(
       endDate,
       startDate,
       isActive,
       year,
       month,
-      currentYearMonth
+      currentYearMonth,
+      todaysDate
     );
 
     return daysInPlacement;
@@ -61,16 +73,44 @@ Template.Reports.helpers({
     const year = templateInstance.year.get();
     const month = templateInstance.month.get();
     const currentYearMonth = templateInstance.currentYearMonth.get();
-
+    const todaysDate = new Date().getDate();
     const daysInPlacement = calculateDaysInPlacement(
       endDate,
       startDate,
       isActive,
       year,
       month,
-      currentYearMonth
+      currentYearMonth,
+      todaysDate
     );
 
     return rate && rate.dailyAmount && rate.dailyAmount * daysInPlacement;
+  },
+  months() {
+    return [
+      { monthNumber: 0, monthName: 'Jan' },
+      { monthNumber: 1, monthName: 'Feb' },
+      { monthNumber: 2, monthName: 'Mar' },
+      { monthNumber: 3, monthName: 'Apr' },
+      { monthNumber: 4, monthName: 'May' },
+      { monthNumber: 5, monthName: 'Jun' },
+      { monthNumber: 6, monthName: 'Jul' },
+      { monthNumber: 7, monthName: 'Aug' },
+      { monthNumber: 8, monthName: 'Sep' },
+      { monthNumber: 9, monthName: 'Oct' },
+      { monthNumber: 10, monthName: 'Nov' },
+      { monthNumber: 11, monthName: 'Dec' },
+    ];
+  },
+  years() {
+    const currentYear = new Date().getFullYear();
+    const last5Years = [
+      currentYear,
+      currentYear - 1,
+      currentYear - 2,
+      currentYear - 3,
+      currentYear - 4,
+    ];
+    return last5Years;
   },
 });

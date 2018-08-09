@@ -15,7 +15,7 @@ export const calculateDaysInPlacement = (
     year,
     month,
     0
-  ).getDate()}`;
+  ).getUTCDate()}`;
 
   const startDateObject = new Date(startDate);
   const endDateObject = endDate === null ? null : new Date(endDate);
@@ -23,26 +23,26 @@ export const calculateDaysInPlacement = (
   if (currentYearMonth === startOfMonth) {
     if (isActive) {
       if (new Date(startOfMonth) < startDateObject) {
-        console.log(todaysDate, startDateObject.getDate());
-        return todaysDate - startDateObject.getDate();
+        return todaysDate - startDateObject.getUTCDate();
       }
       // This should be the number of days from the first day of the month to today (including today)
       return todaysDate + 1;
     }
     if (new Date(startOfMonth) < startDateObject) {
-      return endDateObject.getDate() - startDateObject.getDate() + 1;
+      return endDateObject.getUTCDate() - startDateObject.getUTCDate();
     }
     if (endDateObject < new Date(startOfMonth)) {
       return 0;
     }
     // + 2 because the end date will be set to the 1st second of the day, and that means that it won't be counted
-    return endDateObject.getDate() + 2;
+    return endDateObject.getUTCDate() + 1;
   }
+
   if (new Date(startOfMonth) < startDateObject) {
     if (new Date(endOfMonth) < startDateObject) {
       return 0;
     }
-    return new Date(endOfMonth).getDate() - startDateObject.getDate();
+    return new Date(endOfMonth).getUTCDate() - startDateObject.getUTCDate() + 1;
   }
-  return new Date(endOfMonth).getDate();
+  return new Date(endOfMonth).getUTCDate();
 };

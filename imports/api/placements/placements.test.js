@@ -6,12 +6,13 @@ import { Placements } from './placements';
 
 if (Meteor.isServer) {
   describe('placements collection', function() {
-    it('insert correctly', function() {
+    it('inserts placement correctly', function() {
       const placementId = Placements.insert({
         childId: '8Sf912SSfsdfi',
         startDate: new Date(),
         endDate: new Date(),
         isActive: true,
+        isRespite: false,
       });
       const added = Placements.find({ _id: placementId });
       const collectionName = added._getCollectionName();

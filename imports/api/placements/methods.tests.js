@@ -19,6 +19,7 @@ if (Meteor.isServer) {
         true,
         '343asdfaisII',
         'isIas23akIsd',
+        false,
       ]);
 
       assert.equal(Placements.find().count(), 1);

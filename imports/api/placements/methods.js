@@ -3,13 +3,12 @@ import { check, Match } from 'meteor/check';
 import { Placements } from './placements';
 
 Meteor.methods({
-  placementsInsert(startDate, endDate, isActive, childId, rateId, isRespite) {
+  placementsInsert(startDate, endDate, isActive, childId, rateId) {
     check(startDate, Date);
     check(endDate, Match.Maybe(Date));
     check(isActive, Boolean);
     check(childId, String);
     check(rateId, Match.Maybe(String));
-    check(isRespite, Boolean);
 
     return Placements.insert({
       startDate,
@@ -17,7 +16,6 @@ Meteor.methods({
       isActive,
       childId,
       rateId,
-      isRespite,
     });
   },
   placementsRemove(_id) {
@@ -26,22 +24,13 @@ Meteor.methods({
       _id,
     });
   },
-  placementUpdate(
-    _id,
-    startDate,
-    endDate,
-    isActive,
-    childId,
-    rateId,
-    isRespite
-  ) {
+  placementUpdate(_id, startDate, endDate, isActive, childId, rateId) {
     check(_id, String);
     check(startDate, Match.Maybe(Date));
     check(endDate, Match.Maybe(Date));
     check(isActive, Match.Maybe(Boolean));
     check(childId, Match.Maybe(String));
     check(rateId, Match.Maybe(String));
-    check(isRespite, Match.Maybe(Boolean));
 
     const updateObject = {
       startDate: startDate || null,
@@ -49,7 +38,6 @@ Meteor.methods({
       isActive: isActive || null,
       childId: childId || null,
       rateId: rateId || null,
-      isRespite: isRespite || null,
     };
 
     return Placements.update(

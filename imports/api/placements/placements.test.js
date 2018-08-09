@@ -12,7 +12,6 @@ if (Meteor.isServer) {
         startDate: new Date(),
         endDate: new Date(),
         isActive: true,
-        isRespite: false,
       });
       const added = Placements.find({ _id: placementId });
       const collectionName = added._getCollectionName();

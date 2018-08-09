@@ -23,6 +23,7 @@ export const calculateDaysInPlacement = (
   if (currentYearMonth === startOfMonth) {
     if (isActive) {
       if (new Date(startOfMonth) < startDateObject) {
+        console.log(todaysDate, startDateObject.getDate());
         return todaysDate - startDateObject.getDate();
       }
       // This should be the number of days from the first day of the month to today (including today)

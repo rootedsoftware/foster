@@ -8,8 +8,8 @@ if (Meteor.isServer) {
   describe('rates collection', function() {
     it('insert correctly', function() {
       const rateId = Rates.insert({
-        name: 'Respite',
-        dailyAmount: 15,
+        name: 'Family',
+        dailyAmount: 20,
       });
       const added = Rates.find({ _id: rateId });
       const collectionName = added._getCollectionName();

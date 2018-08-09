@@ -11,7 +11,7 @@ if (Meteor.isServer) {
       Rates.remove({});
     });
 
-    it('can add a new link', function() {
+    it('can add a new rate', function() {
       const addLink = Meteor.server.method_handlers.ratesInsert;
 
       addLink.apply({}, ['meteor.com', 15]);

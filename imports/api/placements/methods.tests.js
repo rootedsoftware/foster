@@ -11,7 +11,7 @@ if (Meteor.isServer) {
       Placements.remove({});
     });
 
-    it('can add a new link', function() {
+    it('can add a new placement', function() {
       const addLink = Meteor.server.method_handlers.placementsInsert;
       addLink.apply({}, [
         new Date(),

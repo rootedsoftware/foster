@@ -11,7 +11,7 @@ if (Meteor.isServer) {
       Contacts.remove({});
     });
 
-    it('can add a new link', function() {
+    it('can add a new contact', function() {
       const addLink = Meteor.server.method_handlers.contactsInsert;
 
       addLink.apply({}, ['John', 'Case Worker', '555-1233']);

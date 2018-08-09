@@ -11,7 +11,7 @@ if (Meteor.isServer) {
       Children.remove({});
     });
 
-    it('can add a new link', function() {
+    it('can add a new child', function() {
       const addLink = Meteor.server.method_handlers.childrenInsert;
 
       addLink.apply({}, ['John', 11]);

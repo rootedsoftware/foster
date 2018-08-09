@@ -16,7 +16,7 @@ jobs:
             - v1-dependencies-
       - run:
           name: Install meteor or run it
-          command: curl https://install.meteor.com | /bin/sh
+          command: meteor || curl https://install.meteor.com | /bin/sh
       - run:
           name: Install npm dependencies with meteor
           command: meteor npm install
@@ -28,4 +28,4 @@ jobs:
           key: v1-dependencies-{{ checksum "package.json" }}
 
       # run tests!
-      - run: meteor test --driver-package meteortesting:mocha
+      - run: TEST_WATCH=0 meteor test --driver-package meteortesting:mocha

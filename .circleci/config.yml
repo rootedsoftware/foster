@@ -15,11 +15,11 @@ jobs:
             # fallback to using the latest cache if no exact match is found
             - v1-dependencies-
       - run:
+          name: Install meteor or run it
+          command: meteor || curl https://install.meteor.com | /bin/sh
+      - run:
           name: Install npm dependencies with meteor
           command: meteor npm install
-      - run:
-          name: Install Meteor or run it
-          command: meteor || curl https://install.meteor.com | /bin/sh
 
       - save_cache:
           paths:

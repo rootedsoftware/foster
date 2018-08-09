@@ -28,4 +28,4 @@ jobs:
           key: v1-dependencies-{{ checksum "package.json" }}
 
       # run tests!
-      - run: TEST_WATCH=0 meteor test --driver-package meteortesting:mocha
+      - run: meteor test --once --driver-package meteortesting:mocha

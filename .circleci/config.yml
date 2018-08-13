@@ -58,9 +58,8 @@
 workflows:
   version: 2
   build_accept_deploy:
-    deploy:
-      requires:
-        - build
-        - deploy:
-          requires:
-            - build
+    jobs:
+      - build
+      - deploy:
+        requires:
+          - build

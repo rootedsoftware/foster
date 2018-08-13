@@ -1,63 +1,65 @@
-  version: 2
-  
-  jobs:
-    test:
-      docker:
-        - image: meteor/circleci
+version: 2
 
-      working_directory: ~/repo
+jobs:
+  build:
+    docker:
+      - image: meteor/circleci
 
-      steps:
-        - checkout
+    working_directory: ~/repo
 
-        - restore_cache:
-            keys:
-              - v1-dependencies-{{ checksum "package.json" }}
-              # fallback to using the latest cache if no exact match is found
-              - v1-dependencies-
-        - run:
-            name: Install meteor or run it
-            command: meteor || curl https://install.meteor.com | /bin/sh
-        - run:
-            name: Install npm dependencies with meteor
-            command: meteor npm install
+    steps:
+      - checkout
 
-        - save_cache:
-            paths:
-              - node_modules
-              - .meteor
-            key: v1-dependencies-{{ checksum "package.json" }}
+      - restore_cache:
+          keys:
+            - v1-dependencies-{{ checksum "package.json" }}
+            # fallback to using the latest cache if no exact match is found
+            - v1-dependencies-
+      - run:
+          name: Install meteor or run it
+          command: meteor || curl https://install.meteor.com | /bin/sh
+      - run:
+          name: Install npm dependencies with meteor
+          command: meteor npm install
 
-        # run tests!
-        - run: meteor test --once --driver-package meteortesting:mocha
+      - save_cache:
+          paths:
+            - node_modules
+            - .meteor
+          key: v1-dependencies-{{ checksum "package.json" }}
 
-    deploy: 
-      docker:
-        - image: meteor/circleci
+      # run tests!
+      - run: meteor test --once --driver-package meteortesting:mocha
 
-      working_directory: ~/repo
+  deploy:
+    docker:
+      - image: meteor/circleci
 
-      steps:
-        - checkout
+    working_directory: ~/repo
 
-        - restore_cache:
-            keys:
-              - v1-dependencies-{{ checksum "package.json" }}
-              # fallback to using the latest cache if no exact match is found
-              - v1-dependencies-
-        - run:
-            name: Install now and meteor-now
-            command: npm install -g meteor-now
-        - run: 
-            name: Now Login
-            command: now --token NOW_TOKEN
-        - run: 
-            name: Now deploy
-            command: meteor-now
+    steps:
+      - checkout
+
+      - restore_cache:
+          keys:
+            - v1-dependencies-{{ checksum "package.json" }}
+            # fallback to using the latest cache if no exact match is found
+            - v1-dependencies-
+      - run:
+          name: Install now and meteor-now
+          command: npm install -g meteor-now
+      - run:
+          name: Now Login
+          command: now --token NOW_TOKEN
+      - run:
+          name: Now deploy
+          command: meteor-now
 
 workflows:
   version: 2
   test_and_deploy:
     jobs:
-      - test
-      - deploy
+      - build
+      - deploy:
+          requires:
+            - build

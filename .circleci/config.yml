@@ -60,7 +60,7 @@ jobs:
             - node_modules
       - run:
           name: Now deploy
-          command: meteor-now --nosplit
+          command: meteor-now --nosplit --now-options="--token $NOW_TOKEN"
 
 workflows:
   version: 2

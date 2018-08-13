@@ -50,7 +50,7 @@ jobs:
           command: meteor npm install || curl https://install.meteor.com | /bin/sh
       - run:
           name: Now and meteor-now install
-          command: 'sudo npm install -g now meteor-now'
+          command: 'sudo npm install -g now meteor-now@beta'
       - run:
           name: NPM install
           command: npm install
@@ -63,7 +63,7 @@ jobs:
           command: now --token $NOW_TOKEN
       - run:
           name: Now deploy
-          command: meteor-now
+          command: meteor-now --nosplit
 
 workflows:
   version: 2

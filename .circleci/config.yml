@@ -33,7 +33,7 @@ jobs:
 
   deploy:
     docker:
-      - image: meteor/circleci
+      - image: circleci/node:7
 
     working_directory: ~/repo
 

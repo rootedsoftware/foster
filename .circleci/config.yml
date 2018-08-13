@@ -45,9 +45,7 @@ jobs:
             - v1-dependencies-{{ checksum "package.json" }}
             # fallback to using the latest cache if no exact match is found
             - v1-dependencies-
-      - run:
-          name: Install now and meteor-now
-          command: npm install meteor-now
+
       - run:
           name: Now Login
           command: now --token NOW_TOKEN

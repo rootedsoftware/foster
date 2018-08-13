@@ -63,7 +63,7 @@ jobs:
           command: now --token $NOW_TOKEN
       - run:
           name: Now deploy
-          command: 'sudo meteor-now'
+          command: meteor-now
 
 workflows:
   version: 2

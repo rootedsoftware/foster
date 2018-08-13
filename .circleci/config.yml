@@ -47,7 +47,7 @@ jobs:
             - v1-dependencies-
       - run:
           name: Install now and meteor-now
-          command: npm install -g meteor-now
+          command: npm install meteor-now
       - run:
           name: Now Login
           command: now --token NOW_TOKEN

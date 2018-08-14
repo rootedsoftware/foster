@@ -42,8 +42,8 @@ jobs:
           # Must be absolute path or relative path from working_directory
           at: /tmp/repo
       - run:
-          name: cwd
-          command: cwd
+          name: Show working directory
+          command: pwd
       - run:
           name: Now and meteor-now install
           command: 'sudo npm install -g now meteor-now@beta'

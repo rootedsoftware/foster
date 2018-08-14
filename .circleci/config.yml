@@ -1,11 +1,11 @@
 defaults: &defaults
-  working_directory: ~/foster
+  working_directory: ~/foster-test
   docker:
     - image: meteor/circleci
 
 version: 2
 jobs:
-  build:
+  test:
     <<: *defaults
     steps:
       - checkout
@@ -13,7 +13,6 @@ jobs:
       - restore_cache:
           keys:
             - v1-dependencies-{{ checksum "package.json" }}
-            # fallback to using the latest cache if no exact match is found
             - v1-dependencies-
       - run:
           name: Install meteor or run it
@@ -28,38 +27,30 @@ jobs:
             - .meteor
           key: v1-dependencies-{{ checksum "package.json" }}
 
-      # run tests!
       - run: meteor test --once --driver-package meteortesting:mocha
 
       - persist_to_workspace:
           root: ~/
           paths:
-            - foster/*
+            - foster-test/*
 
-  deploy:
+  deploy_test:
     <<: *defaults
     steps:
       - attach_workspace:
-          # Must be absolute path or relative path from working_directory
           at: ~/
-      - run:
-          name: Show working directory
-          command: pwd
-      - run:
-          name: List
-          command: ls -la
       - run:
           name: Install meteor or run it
           command: meteor || curl https://install.meteor.com | /bin/sh
       - run:
           name: Now deploy
-          command: npm run deploy
+          command: npm run deploy-dev
 
 workflows:
   version: 2
   test_and_deploy:
     jobs:
-      - build
+      - test
       - deploy:
           requires:
-            - build
+            - test

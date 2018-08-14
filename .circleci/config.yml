@@ -34,7 +34,7 @@ jobs:
           paths:
             - foster-test/*
 
-  deploy_test:
+  deploy_dev:
     <<: *defaults
     steps:
       - attach_workspace:
@@ -51,6 +51,6 @@ workflows:
   test_and_deploy:
     jobs:
       - test
-      - deploy_test:
+      - deploy_dev:
           requires:
             - test

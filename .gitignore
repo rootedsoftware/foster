@@ -6,3 +6,5 @@ npm-debug.log
 bundle.tar.gz
 node_modules
 .meteor/dev_bundle
+.env*
+production.settings.json

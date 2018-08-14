@@ -45,9 +45,10 @@ jobs:
           at: ~/repo
       - run:
           name: Show working directory
-          command: | 
-            pwd
-            ls -la
+          command: pwd
+      - run:
+          name: List
+          command: ls -la
       - run:
           name: Now and meteor-now install
           command: npm install now meteor-now@beta

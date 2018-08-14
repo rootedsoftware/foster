@@ -60,7 +60,7 @@ jobs:
             - node_modules
       - run:
           name: Now deploy
-          command: meteor-now --nosplit --now-options="--token $NOW_TOKEN --name=foster"
+          command: meteor-now --nosplit --now-options="--token $NOW_TOKEN -N foster"
 
 workflows:
   version: 2

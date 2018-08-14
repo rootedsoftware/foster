@@ -1,5 +1,5 @@
 defaults: &defaults
-  working_directory: ~/repo
+  working_directory: ~/foster
   docker:
     - image: meteor/circleci
 
@@ -34,7 +34,7 @@ jobs:
       - persist_to_workspace:
           root: ~/
           paths:
-            - repo/*
+            - foster/*
 
   deploy:
     <<: *defaults

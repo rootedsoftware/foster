@@ -51,7 +51,7 @@ jobs:
           command: 'sudo npm install -g now meteor-now@beta'
       - run:
           name: Now deploy
-          command: meteor-now --nosplit --now-options="--token $NOW_TOKEN -n foster"
+          command: meteor-now --nosplit --now-options="--token $NOW_TOKEN"
 
 workflows:
   version: 2

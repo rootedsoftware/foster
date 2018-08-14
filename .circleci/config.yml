@@ -4,10 +4,9 @@ defaults: &defaults
     - image: meteor/circleci
 
 version: 2
-
 jobs:
   build:
-  <<: *defaults
+    <<: *defaults
     steps:
       - checkout
 

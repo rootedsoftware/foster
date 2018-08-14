@@ -5,7 +5,7 @@ jobs:
     docker:
       - image: meteor/circleci
 
-    working_directory: ~/repo
+    working_directory: /tmp/repo
 
     steps:
       - checkout
@@ -32,9 +32,9 @@ jobs:
       - run: meteor test --once --driver-package meteortesting:mocha
 
       - persist_to_workspace:
-          root: ~/repo
+          root: /tmp
           paths:
-            - /*
+            - /repo
 
   deploy:
     docker:
@@ -43,7 +43,7 @@ jobs:
     steps:
       - attach_workspace:
           # Must be absolute path or relative path from working_directory
-          at: ~/repo
+          at: /tmp/repo
       - run:
           name: Now and meteor-now install
           command: 'sudo npm install -g now meteor-now@beta'

@@ -49,6 +49,9 @@ jobs:
           name: List
           command: ls -la
       - run:
+          name: Install meteor or run it
+          command: meteor || curl https://install.meteor.com | /bin/sh
+      - run:
           name: Now deploy
           command: npm run deploy
 

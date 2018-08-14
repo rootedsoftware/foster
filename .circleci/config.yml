@@ -41,7 +41,7 @@ jobs:
     steps:
       - attach_workspace:
           # Must be absolute path or relative path from working_directory
-          at: ~/repo
+          at: ~/
       - run:
           name: Show working directory
           command: pwd

@@ -18,7 +18,7 @@ jobs:
             - v1-dependencies-
       - run:
           name: Install meteor or run it
-          command: meteor || curl https://install.meteor.com | /bin/sh
+          command: curl https://install.meteor.com | /bin/sh
       - run:
           name: Install npm dependencies with meteor
           command: meteor npm install
@@ -48,7 +48,7 @@ jobs:
           command: pwd
       - run:
           name: Now and meteor-now install
-          command: 'sudo npm install -g now meteor-now@beta'
+          command: 'npm install now meteor-now@beta'
       - run:
           name: Now deploy
           command: meteor-now --nosplit --now-options="--token $NOW_TOKEN"
@@ -58,6 +58,4 @@ workflows:
   test_and_deploy:
     jobs:
       - build
-      - deploy:
-          requires:
-            - build
+      - deploy

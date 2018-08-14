@@ -34,7 +34,7 @@ jobs:
       - persist_to_workspace:
           root: /tmp
           paths:
-            - /repo
+            - repo/*
 
   deploy:
     docker:

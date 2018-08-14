@@ -49,11 +49,8 @@ jobs:
           name: List
           command: ls -la
       - run:
-          name: Now and meteor-now install
-          command: npm install now meteor-now@beta
-      - run:
           name: Now deploy
-          command: meteor-now --nosplit --now-options="--token $NOW_TOKEN -n foster"
+          command: npm run deploy
 
 workflows:
   version: 2

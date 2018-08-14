@@ -3,7 +3,8 @@
   "private": true,
   "scripts": {
     "start": "meteor run",
-    "test": "TEST_WATCH=1 meteor test --driver-package meteortesting:mocha"
+    "test": "TEST_WATCH=1 meteor test --driver-package meteortesting:mocha",
+    "deploy": "meteor-now --nosplit --now-options='--token $NOW_TOKEN'"
   },
   "dependencies": {
     "@babel/runtime": "7.0.0-beta.55",
@@ -17,6 +18,8 @@
     "eslint-config-airbnb": "^17.1.0",
     "eslint-plugin-import": "^2.14.0",
     "eslint-plugin-jsx-a11y": "^6.1.1",
-    "eslint-plugin-react": "^7.11.0"
+    "eslint-plugin-react": "^7.11.0",
+    "meteor-now": "^0.6.2",
+    "now": "^11.3.10"
   }
 }

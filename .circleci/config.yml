@@ -1,12 +1,12 @@
+defaults: &defaults
+  working_directory: /tmp/repo
+  docker:
+    - image: meteor/circleci
+
 version: 2
 
 jobs:
   build:
-    docker:
-      - image: meteor/circleci
-
-    working_directory: /tmp/repo
-
     steps:
       - checkout
 
@@ -37,16 +37,13 @@ jobs:
             - repo/*
 
   deploy:
-    docker:
-      - image: meteor/circleci
-
     steps:
       - attach_workspace:
           # Must be absolute path or relative path from working_directory
           at: /tmp/repo
       - run:
-          name: List dir
-          command: ls -la
+          name: cwd
+          command: cwd
       - run:
           name: Now and meteor-now install
           command: 'sudo npm install -g now meteor-now@beta'

@@ -61,6 +61,7 @@ jobs:
       - run:
           name: Now deploy
           command: meteor-now --nosplit --now-options="--token $NOW_TOKEN -n foster"
+          background: true
 
 workflows:
   version: 2

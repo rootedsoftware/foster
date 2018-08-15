@@ -50,7 +50,7 @@ jobs:
     steps:
       - attach_workspace:
           at: ~/
-      -run:
+      - run:
           name: Rename directory -- meteor-now uses the directory name as the now name
           command: cd .. && mv foster-test foster && cd foster
       - run:

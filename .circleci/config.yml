@@ -50,6 +50,9 @@ jobs:
     steps:
       - attach_workspace:
           at: ~/
+      -run:
+          name: Rename directory -- meteor-now uses the directory name as the now name
+          command: cd .. | mv foster-test foster | cd foster
       - run:
           name: Install meteor or run it
           command: meteor || curl https://install.meteor.com | /bin/sh

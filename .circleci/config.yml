@@ -45,6 +45,20 @@ jobs:
       - run:
           name: Now deploy
           command: npm run deploy-dev
+  deploy_prod:
+    <<: *defaults
+    steps:
+      - attach_workspace:
+          at: ~/
+      - run:
+          name: Install meteor or run it
+          command: meteor || curl https://install.meteor.com | /bin/sh
+      - run:
+          name: Create a production.settings.json file for meteor-now
+          command: echo "" > ./production.settings.json
+      - run:
+          name: Now deploy
+          command: npm run deploy-prod
 
 workflows:
   version: 2
@@ -52,5 +66,8 @@ workflows:
     jobs:
       - test
       - deploy_dev:
+          requires:
+            - test
+      - deploy_prod:
           requires:
             - test

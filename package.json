@@ -5,8 +5,7 @@
     "start": "meteor run",
     "test": "TEST_WATCH=1 meteor test --driver-package meteortesting:mocha",
     "deploy-dev": "meteor-now --nosplit --now-options='--token $NOW_TOKEN'",
-    "deploy-prod": "meteor-now --nosplit --now-options='--token $NOW_TOKEN' -e MONGO_URL=$MONGO_URL -e ROOT_URL=https://${DOMAIN} -e NODE_ENV=production",
-    "now-alias": "now alias --token $NOW_TOKEN && now remove foster --safe"
+    "deploy-prod": "meteor-now --nosplit --now-options='--token $NOW_TOKEN' -e MONGO_URL=$MONGO_URL -e ROOT_URL=https://${DOMAIN} -e NODE_ENV=production && now alias --token $NOW_TOKEN && now --token $NOW_TOKEN remove foster --safe"
   },
   "dependencies": {
     "@babel/runtime": "7.0.0-beta.55",
@@ -25,6 +24,7 @@
     "now": "^11.3.10"
   },
   "now": {
+    "name": "foster",
     "alias": "foster"
   }
 }

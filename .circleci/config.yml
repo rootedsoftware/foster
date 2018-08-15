@@ -61,7 +61,7 @@ jobs:
           command: npm run deploy-prod
       - run:
           name: Alias Now
-          command: now alias && now remove foster --safe
+          command: npm run now-alias
 
 workflows:
   version: 2

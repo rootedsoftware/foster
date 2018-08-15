@@ -59,6 +59,7 @@ jobs:
       - run:
           name: Now deploy
           command: npm run deploy-prod
+          hidden: true
 
 workflows:
   version: 2

@@ -1,5 +1,5 @@
 defaults: &defaults
-  working_directory: ~/foster
+  working_directory: ~/foster-test
   docker:
     - image: meteor/circleci
 
@@ -32,7 +32,7 @@ jobs:
       - persist_to_workspace:
           root: ~/
           paths:
-            - foster/*
+            - foster-test/*
 
   deploy_dev:
     <<: *defaults
@@ -59,6 +59,9 @@ jobs:
       - run:
           name: Now deploy
           command: npm run deploy-prod
+      - run:
+          name: Alias Now
+          command: now alias && now remove foster --safe
 
 workflows:
   version: 2

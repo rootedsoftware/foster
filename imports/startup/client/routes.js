@@ -2,7 +2,11 @@ import { FlowRouter } from 'meteor/kadira:flow-router';
 import { BlazeLayout } from 'meteor/kadira:blaze-layout';
 
 // Import needed templates
+import '../../ui/layouts/full/full';
 import '../../ui/layouts/body/body';
+
+import '../../ui/components/header/header';
+import '../../ui/components/footer/footer';
 import '../../ui/pages/home/home';
 
 import '../../ui/pages/not-found/not-found';
@@ -26,96 +30,96 @@ import '../../ui/components/contacts/EditContact';
 import '../../ui/pages/reports/Reports';
 
 FlowRouter.route('/', {
-  name: 'App.home',
+  name: 'Home',
   action() {
-    BlazeLayout.render('AppBody', { main: 'Home' });
+    BlazeLayout.render('Full', { top: 'Header', main: 'Home', bottom: 'Footer' });
   },
 });
-
-FlowRouter.notFound = {
-  action() {
-    BlazeLayout.render('AppBody', { main: 'App_notFound' });
-  },
-};
 
 FlowRouter.route('/rates', {
   name: 'Rates',
   action() {
-    BlazeLayout.render('AppBody', { main: 'Rates' });
+    BlazeLayout.render('Full', { top: 'Header', main: 'Rates', bottom: 'Footer' });
   },
 });
 FlowRouter.route('/rate/:rateId', {
   name: 'Rate',
   action() {
-    BlazeLayout.render('AppBody', { main: 'Rate' });
+    BlazeLayout.render('Full', { top: 'Header', main: 'Rate', bottom: 'Footer' });
   },
 });
 FlowRouter.route('/rate/edit/:rateId', {
   name: 'EditRate',
   action() {
-    BlazeLayout.render('AppBody', { main: 'EditRate' });
+    BlazeLayout.render('Full', { top: 'Header', main: 'EditRate', bottom: 'Footer' });
   },
 });
 FlowRouter.route('/children', {
   name: 'Children',
   action() {
-    BlazeLayout.render('AppBody', { main: 'Children' });
+    BlazeLayout.render('Full', { top: 'Header', main: 'Children', bottom: 'Footer' });
   },
 });
 FlowRouter.route('/child/:childId', {
   name: 'Child',
   action() {
-    BlazeLayout.render('AppBody', { main: 'Child' });
+    BlazeLayout.render('Full', { top: 'Header', main: 'Child', bottom: 'Footer' });
   },
 });
 FlowRouter.route('/child/edit/:childId', {
   name: 'EditChild',
   action() {
-    BlazeLayout.render('AppBody', { main: 'EditChild' });
+    BlazeLayout.render('Full', { top: 'Header', main: 'EditChild', bottom: 'Footer' });
   },
 });
 
 FlowRouter.route('/placements', {
   name: 'Placements',
   action() {
-    BlazeLayout.render('AppBody', { main: 'Placements' });
+    BlazeLayout.render('Full', { top: 'Header', main: 'Placements', bottom: 'Footer' });
   },
 });
 FlowRouter.route('/placement/:placementId', {
   name: 'Placement',
   action() {
-    BlazeLayout.render('AppBody', { main: 'Placement' });
+    BlazeLayout.render('Full', { top: 'Header', main: 'Placement', bottom: 'Footer' });
   },
 });
 FlowRouter.route('/placement/edit/:placementId', {
   name: 'EditPlacement',
   action() {
-    BlazeLayout.render('AppBody', { main: 'EditPlacement' });
+    BlazeLayout.render('Full', { top: 'Header', main: 'EditPlacement', bottom: 'Footer' });
   },
 });
 
 FlowRouter.route('/contacts', {
   name: 'Contacts',
   action() {
-    BlazeLayout.render('AppBody', { main: 'Contacts' });
+    BlazeLayout.render('Full', { top: 'Header', main: 'Contacts', bottom: 'Footer' });
   },
 });
 FlowRouter.route('/contact/:contactId', {
   name: 'Contact',
   action() {
-    BlazeLayout.render('AppBody', { main: 'Contact' });
+    BlazeLayout.render('Full', { top: 'Header', main: 'Contact', bottom: 'Footer' });
   },
 });
 FlowRouter.route('/contact/edit/:contactId', {
   name: 'EditContact',
   action() {
-    BlazeLayout.render('AppBody', { main: 'EditContact' });
+    BlazeLayout.render('Full', { top: 'Header', main: 'EditContact', bottom: 'Footer' });
   },
 });
 
 FlowRouter.route('/reports', {
   name: 'Reports',
   action() {
-    BlazeLayout.render('AppBody', { main: 'Reports' });
+    BlazeLayout.render('Full', { top: 'Header', main: 'Reports', bottom: 'Footer' });
   },
 });
+
+FlowRouter.notFound = {
+  action() {
+    BlazeLayout.render('Body', { main: 'NotFound' });
+  },
+};

@@ -27,3 +27,5 @@ msavin:mongol
 underscore@1.0.10
 audit-argument-checks@1.0.7
 fourseven:scss
+accounts-ui
+accounts-password

@@ -1,0 +1,6 @@
+<template name="Full">
+  <div class="container">
+    {{#if currentUser}} {{> Template.dynamic template=top}} {{> Template.dynamic template=main}} {{> Template.dynamic template=bottom}}
+    {{else}} {{> loginButtons}} Please log in to edit posts. {{/if}}
+  </div>
+</template>

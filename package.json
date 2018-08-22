@@ -3,7 +3,7 @@
   "private": true,
   "scripts": {
     "start": "meteor run",
-    "test": "TEST_WATCH=1 meteor test --driver-package meteortesting:mocha",
+    "test": "TEST_WATCH=1 meteor test --port 4000 --driver-package meteortesting:mocha",
     "deploy-dev": "meteor-now --nosplit --now-options='--token $NOW_TOKEN'",
     "deploy-prod": "meteor-now --nosplit --alias $DOMAIN --now-options='--token $NOW_TOKEN' -e MONGO_URL=$MONGO_URL -e ROOT_URL=https://$DOMAIN -e NODE_ENV=production"
   },

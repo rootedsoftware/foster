@@ -1,52 +1,65 @@
 <template name="Placements">
-  <h2>Placements</h2>
-  <form class="placement-add">
-    <p>
-      <label for="startDate">Start Date</label>
-      <input type="date" name="startDate" required>
-    </p>
-    <p>
-      <label for="endDate">End Date</label>
-      <input type="date" name="endDate">
-    </p>
-    <p>
-      <label for="isActive">Is the child still placed with you?</label>
-      <select name="isActive" required>
-        <option value="" disabled selected>Pick one...</option>
-        <option value="yes">Yes</option>
-        <option value="no">No</option>
-      </select>
-    </p>
-    <p>
-      <label for="child">Child</label>
-      <select name="childId" required>
-        <option value="" disabled selected>Pick one...</option>
-        {{#each children}}
-        <option value="{{_id}}">{{name}}</option>
-        {{/each}}
-      </select>
-    </p>
-    <p>
-      <label for="rateId">Reimbursement Rate</label>
-      <select name="rateId">
-        <option value="" disabled selected>Pick one...</option>
-        {{#each rates}}
-        <option value="{{_id}}">{{name}} {{amount}}</option>
-        {{/each}}
-      </select>
-    </p>
-    <p>
-      <input type="submit" value="Add new placement">
-    </p>
+  <div class="row">
+    <div class="col-md">
+      <h4>Add New</h4>
+      <form class="placement-add">
+        <div class="form-group">
+          <label for="startDate">Start Date</label>
+          <input type="date" class="form-control" name="startDate" required>
+        </div>
+        <div class="form-group">
+          <label for="endDate">End Date</label>
+          <input type="date" class="form-control" name="endDate" required>
+        </div>
+        <div class="form-group">
+          <label for="isActive">Is the child still placed with you?</label>
+          <select class="form-control" name="isActive" required>
+            <option value="" disabled selected>Pick one...</option>
+            <option value="yes">Yes</option>
+            <option value="no">No</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="child">Child</label>
+          <select class="form-control" name="childId" required>
+            <option value="" disabled selected>Pick one...</option>
+            {{#each children}}
+            <option value="{{_id}}">{{name}}</option>
+            {{/each}}
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="rateId">Reimbursement Rate</label>
+          <select class="form-control" name="rateId">
+            <option value="" disabled selected>Pick one...</option>
+            {{#each rates}}
+            <option value="{{_id}}">{{name}} {{amount}}</option>
+            {{/each}}
+          </select>
+        </div>
 
-  </form>
-  <ul>
-    {{#each placements}}
-    <li>
-      <a href="placement/{{_id}}">{{childName}} - {{formattedDate startDate}}{{#if endDate}} - {{formattedDate endDate}}{{/if}} - {{#if isActive}}Is
-        currenlty placed{{else}} Is not currently placed{{/if}}</a>
-      <button class="removePlacement">Remove</button>
-    </li>
-    {{/each}}
-  </ul>
+        <button type="submit" class="btn btn-primary">Add new placement</button>
+
+      </form>
+    </div>
+    <div class="col-md">
+      <h4>Placements</h4>
+      <ul class="list-group">
+        {{#each placements}}
+        <div class="list-group-row">
+          <div class="row align-items-center">
+            <div class="col">
+              <h3 class="list-item-title">{{childName}}</h3>
+              <span class="list-item-desc"><a href="placement/{{_id}}">{{formattedDate startDate}}{{#if endDate}} - {{formattedDate
+                  endDate}}{{/if}} - {{#if isActive}}Is currenlty placed{{else}} Is not currently placed{{/if}}</a></span>
+            </div>
+            <div class="col align-right">
+              <span class="font-accent"><button class="btn btn-danger btn-sm removePlacement">Remove</button></span>
+            </div>
+          </div>
+        </div>
+        {{/each}}
+      </ul>
+    </div>
+  </div>
 </template>

@@ -2,8 +2,9 @@
   "name": "foster",
   "private": true,
   "scripts": {
+    "lint": "eslint .",
     "start": "meteor run",
-    "test": "TEST_WATCH=1 meteor test --port 4000 --driver-package meteortesting:mocha",
+    "test": "npm run lint && TEST_WATCH=1 meteor test --port 4000 --driver-package meteortesting:mocha",
     "deploy-dev": "meteor-now --nosplit --now-options='--token $NOW_TOKEN'",
     "deploy-prod": "meteor-now --nosplit --alias $DOMAIN --now-options='--token $NOW_TOKEN' -e MONGO_URL=$MONGO_URL -e ROOT_URL=https://$DOMAIN -e NODE_ENV=production"
   },
@@ -18,7 +19,7 @@
   },
   "devDependencies": {
     "chai": "^4.1.2",
-    "eslint": "^4.19.1",
+    "eslint": "^5.4.0",
     "eslint-config-airbnb": "^17.1.0",
     "eslint-plugin-import": "^2.14.0",
     "eslint-plugin-jsx-a11y": "^6.1.1",

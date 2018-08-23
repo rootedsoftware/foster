@@ -1,24 +1,21 @@
 <template name="Rate">
-  <div class="row">
-    <div class="col-md">
-      <h2>Rate</h2>
-      <div>
-        {{#with rate}}
-        <p>
-          Rate name: {{name}}
-        </p>
-        <p>
-          Rate amount: {{dailyAmount}}
-        </p>
-        <div class="mt-2 mb-4">
-          <a href="/rate/edit/{{_id}}">Edit</a>
-        </div>
-        <div class="my-3">
-          <button class="removeRate btn btn-danger">Remove</button>
-        </div>
-        {{/with}}
+  <div class="col-md">
+    <h2>Rate</h2>
+    <div>
+      {{#with rate}}
+      <p>
+        Rate name: {{name}}
+      </p>
+      <p>
+        Rate amount: {{dailyAmount}}
+      </p>
+      <div class="mt-2 mb-4">
+        <a href="/rate/edit/{{_id}}">Edit</a>
       </div>
+      <div class="my-3">
+        <button class="removeRate btn btn-danger">Remove</button>
+      </div>
+      {{/with}}
     </div>
   </div>
-
 </template>

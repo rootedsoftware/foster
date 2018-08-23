@@ -1,45 +1,38 @@
 <template name="EditPlacement">
-  <h1>
-    Edit placement
-  </h1>
-  <p>
-    <a href="/reports">Go To Reports</a>
-  </p>
-  <br />
-  <p>
-    {{#with placement}}
-    <strong>Child Name: {{childName}}</strong>
-    <form>
-      <p>
-        <label for="startDate">Start Date</label>
-        <input type="text" id="startDate" value="{{dateHTML startDate}}" required/>
-      </p>
-      <p>
-        <label for="endDate">End Date</label>
-        <input type="date" id="endDate" value="{{dateHTML endDate}}" />
-      </p>
-      <p>
-        <label for="isActive">Is the child still placed with you?</label>
-        <select name="isActive" required>
-          <option value="yes" {{selected isActive 'yes'}}>Yes</option>
-          <option value="no" {{selected isActive 'no'}}>No</option>
-        </select>
-      </p>
-      <p>
-        <label for="rateId">Reimbursement Rate</label>
-        <select name="rateId">
-          <option value="" disabled selected>Pick one...</option>
-          {{#each rates}}
-          <option value="{{_id}}" {{selected _id ../rateId}}>{{name}} {{amount}}</option>
-          {{/each}}
-        </select>
-      </p>
-      <input type="hidden" id="_id" value="{{_id}}" />
-      <button type="submit">Update</button>
-    </form>
-    {{/with}}
-  </p>
-  <p>
-    <a href="/">Go Home</a>
-  </p>
+  <div class="col-md">
+    <h4>Edit placement</h4>
+    <div class="mt-2">
+      {{#with placement}}
+      <strong class="text-info">Child Name: {{childName}}</strong>
+      <form>
+        <div class="form-group">
+          <label for="startDate">Start Date</label>
+          <input type="text" class="form-control" id="startDate" value="{{dateHTML startDate}}" required/>
+        </div>
+        <div class="form-group">
+          <label for="endDate">End Date</label>
+          <input type="date" class="form-control" id="endDate" value="{{dateHTML endDate}}" />
+        </div>
+        <div class="form-group">
+          <label for="isActive">Is the child still placed with you?</label>
+          <select name="isActive" class="form-control" required>
+            <option value="yes" {{selected isActive 'yes'}}>Yes</option>
+            <option value="no" {{selected isActive 'no'}}>No</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="rateId">Reimbursement Rate</label>
+          <select name="rateId" class="form-control">
+            <option value="" disabled selected>Pick one...</option>
+            {{#each rates}}
+            <option value="{{_id}}" {{selected _id ../rateId}}>{{name}} {{amount}}</option>
+            {{/each}}
+          </select>
+        </div>
+        <input type="hidden" id="_id" value="{{_id}}" />
+        <button type="submit" class="btn btn-primary">Update</button>
+      </form>
+      {{/with}}
+    </div>
+  </div>
 </template>

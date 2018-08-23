@@ -1,19 +1,21 @@
 <template name="Child">
-  <h2>Child</h2>
-  <div>
-    {{#with child}}
-    <p>
-      Child name: {{name}}
-    </p>
-    <p>
-      Child Age: {{age}}
-    </p>
-    <p>
-      <button class="removeChild btn btn-danger">Remove</button>
-    </p>
-    <p>
-      <a href="/child/edit/{{_id}}">Edit</a>
-    </p>
-    {{/with}}
+  <div class="col-md">
+    <h2>Child</h2>
+    <div class="my-3">
+      {{#with child}}
+      <p>
+        Child name: {{name}}
+      </p>
+      <p>
+        Child Age: {{age}}
+      </p>
+      <div class="mb-4 mt-2">
+        <a href="/child/edit/{{_id}}">Edit</a>
+      </div>
+      <div class="mt-3">
+        <button class="removeChild btn btn-danger">Remove</button>
+      </div>
+      {{/with}}
+    </div>
   </div>
 </template>

@@ -1,38 +1,36 @@
 <template name="Rates">
-  <div class="row">
-    <div class="col-md">
-      <h4>Add Rate</h4>
-      <form class="rate-add">
-        <div class="form-group">
-          <label for="name">Rate Name</label>
-          <input type="text" class="form-control" name="name" placeholder="e.g. Family" required>
-        </div>
-        <div class="form-group">
-          <label for="dailyAmount">Daily Rate</label>
-          <input type="number" class="form-control" name="dailyAmount" placeholder="15" step="1" min="1" required>
-        </div>
-        <div class="form-group">
-          <button type="submit" class="btn btn-primary">Add new rate</button>
-        </div>
-      </form>
-    </div>
-    <div class="col-md">
-      <h4>Rates</h4>
-      <ul class="list-group">
-        {{#each rates}}
-        <div class="list-group-row">
-          <div class="row align-items-center">
-            <div class="col">
-              <h3 class="list-item-title">{{name}}</h3>
-              <span class="list-item-desc"><a href="rate/{{_id}}">${{dailyAmount}}</a></span>
-            </div>
-            <div class="col align-right">
-              <span class="font-accent"> <button class="removeRate btn btn-danger">Remove</button></span>
-            </div>
+  <div class="col-md">
+    <h4>Add Rate</h4>
+    <form class="rate-add">
+      <div class="form-group">
+        <label for="name">Rate Name</label>
+        <input type="text" class="form-control" name="name" placeholder="e.g. Family" required>
+      </div>
+      <div class="form-group">
+        <label for="dailyAmount">Daily Rate</label>
+        <input type="number" class="form-control" name="dailyAmount" placeholder="15" step="1" min="1" required>
+      </div>
+      <div class="form-group">
+        <button type="submit" class="btn btn-primary">Add new rate</button>
+      </div>
+    </form>
+  </div>
+  <div class="col-md">
+    <h4>Rates</h4>
+    <ul class="list-group">
+      {{#each rates}}
+      <div class="list-group-row">
+        <div class="row align-items-center">
+          <div class="col">
+            <h3 class="list-item-title">{{name}}</h3>
+            <span class="list-item-desc"><a href="rate/{{_id}}">${{dailyAmount}}</a></span>
+          </div>
+          <div class="col align-right">
+            <span class="font-accent"> <button class="removeRate btn btn-danger">Remove</button></span>
           </div>
         </div>
-        {{/each}}
-      </ul>
-    </div>
+      </div>
+      {{/each}}
+    </ul>
   </div>
 </template>

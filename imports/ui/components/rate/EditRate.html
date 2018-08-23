@@ -1,28 +1,26 @@
 <template name="EditRate">
-  <div class="row">
-    <div class="col-md">
-      <h1>
-        Edit rate page
-      </h1>
-      <p>
-        {{#with rate}}
-        <form>
-          <div class="form-group">
-            <label for="name">Rate Name</label>
-            <input type="text" class="form-control" id="name" value="{{name}}" />
-          </div>
-          <div class="form-group">
-            <label for="name">Daily Amount</label>
-            <input type="text" class="form-control" id="dailyAmount" value="{{dailyAmount}}" />
-          </div>
-          <input type="hidden" id="_id" value="{{_id}}" />
-          <button type="submit" class="btn btn-primary">Update</button>
-        </form>
-        {{/with}}
-      </p>
-      <p>
-        <a href="/">Go Home</a>
-      </p>
-    </div>
+  <div class="col-md">
+    <h1>
+      Edit rate page
+    </h1>
+    <p>
+      {{#with rate}}
+      <form>
+        <div class="form-group">
+          <label for="name">Rate Name</label>
+          <input type="text" class="form-control" id="name" value="{{name}}" />
+        </div>
+        <div class="form-group">
+          <label for="name">Daily Amount</label>
+          <input type="text" class="form-control" id="dailyAmount" value="{{dailyAmount}}" />
+        </div>
+        <input type="hidden" id="_id" value="{{_id}}" />
+        <button type="submit" class="btn btn-primary">Update</button>
+      </form>
+      {{/with}}
+    </p>
+    <p>
+      <a href="/">Go Home</a>
+    </p>
   </div>
 </template>

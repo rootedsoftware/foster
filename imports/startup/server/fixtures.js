@@ -1,12 +1,12 @@
 // Fill the DB with example data on startup
 
 import { Meteor } from 'meteor/meteor';
-import { Rates } from '../../api/rates/rates.js';
+import { Rates } from '../../api/rates/rates';
 
 Meteor.startup(() => {
   // if the Rates collection is empty
   if (Rates.find().count() === 0) {
-    const data = [  
+    const data = [
       {
         name: 'Respit',
         dailyAmount: 15,

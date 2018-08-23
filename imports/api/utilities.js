@@ -1,5 +1,3 @@
-import moment from 'moment';
-
 /* eslint import/prefer-default-export: "off" */
 export const calculateDaysInPlacement = (
   endDate,

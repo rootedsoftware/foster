@@ -1,30 +1,25 @@
 <template name="EditContact">
-  <h1>
-    Edit contact page
-  </h1>
-  <p>
+  <div class="col-md">
+    <h4>Edit contact page</h4>
     {{#with contact}}
     <form>
-      <p>
+      <div class="form-group">
         <label for="name">Name</label>
-        <input type="text" id="name" value="{{name}}" />
-      </p>
-      <p>
+        <input type="text" class="form-control" id="name" value="{{name}}" />
+      </div>
+      <div class="form-group">
         <label for="title">Title</label>
-        <input type="text" id="title" value="{{title}}" />
-      </p>
-      <p>
+        <input type="text" class="form-control" id="title" value="{{title}}" />
+      </div>
+      <div class="form-group">
         <label for="phoneNumber">Phone Number</label>
-        <input type="tel" id="phoneNumber" value="{{phoneNumber}}" />
-      </p>
+        <input type="tel" class="form-control" id="phoneNumber" value="{{phoneNumber}}" />
+      </div>
       <input type="hidden" id="_id" value="{{_id}}" />
       <p>
-        <button type="submit">Update</button>
+        <button type="submit" class="btn btn-primary">Update</button>
       </p>
     </form>
     {{/with}}
-  </p>
-  <p>
-    <a href="/">Go Home</a>
-  </p>
+  </div>
 </template>

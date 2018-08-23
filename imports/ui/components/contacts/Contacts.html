@@ -1,28 +1,40 @@
 <template name="Contacts">
-  <h2>Contacts</h2>
-  <form class="contact-add">
-    <p>
-      <label for="name">Name</label>
-      <input type="text" name="name" placeholder="Name" required>
-    </p>
-    <p>
-      <label for="title">Title</label>
-      <input type="text" name="title" placeholder="Case Worker">
-    </p>
-    <p>
-      <label for="phoneNumber">Phone Number</label>
-      <input type="tel" name="phoneNumber" placeholder="(394) 234-2495">
-    </p>
-    <p>
-      <input type="submit" value="Add new contact">
-    </p>
-  </form>
-  <ul>
-    {{#each contacts}}
-    <li>
-      <a href="contact/{{_id}}">{{name}} - {{title}} - {{phoneNumber}}</a>
-      <button class="removeContact">Remove</button>
-    </li>
-    {{/each}}
-  </ul>
+  <div class="col-md">
+    <h4>Add</h4>
+    <form class="contact-add">
+      <div class="form-group">
+        <label for="name">Name</label>
+        <input type="text" class="form-control" name="name" placeholder="Name" required>
+      </div>
+      <div class="form-group">
+        <label for="title">Title</label>
+        <input type="text" class="form-control" name="title" placeholder="Case Worker">
+      </div>
+      <div class="form-group">
+        <label for="phoneNumber">Phone Number</label>
+        <input type="tel" class="form-control" name="phoneNumber" placeholder="(394) 234-2495">
+      </div>
+      <p>
+        <button type="submit" class="btn btn-primary">Add new contact</button>
+      </p>
+    </form>
+  </div>
+  <div class="col-md">
+    <h4>Contacts</h4>
+    <ul class="list-group">
+      {{#each contacts}}
+      <div class="list-group-row">
+        <div class="row align-items-center">
+          <div class="col">
+            <h3 class="list-item-title">{{name}}</h3>
+            <span class="list-item-desc">{{title}} - {{phoneNumber}}<br /><a href="contact/{{_id}}">Edit</a></span>
+          </div>
+          <div class="col align-right">
+            <span class="font-accent"><button class="btn btn-danger btn-sm removeContact">Remove</button></span>
+          </div>
+        </div>
+      </div>
+      {{/each}}
+    </ul>
+  </div>
 </template>

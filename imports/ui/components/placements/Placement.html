@@ -1,27 +1,24 @@
 <template name="Placement">
-  <div class="row">
-    <div class="col-md">
-      <h2>Placement</h2>
-      {{#with placement}}
-      <p>
-        Child name: {{childName}}
-      </p>
-      <p> Start Date: {{formattedDate startDate}}</p>
+  <div class="col-md">
+    <h2>Placement</h2>
+    {{#with placement}}
+    <p>
+      Child name: {{childName}}
+    </p>
+    <p> Start Date: {{formattedDate startDate}}</p>
 
-      <p> {{#if isActive}} This is an
-        <strong>active</strong> placement {{else}} This is
-        <strong>not</strong> an active placement {{/if}}</p>
-      <p> {{#if rateId}} The daily reimbursement amount is ${{reimbursementRate}} {{/if}}
-      </p>
+    <p> {{#if isActive}} This is an
+      <strong>active</strong> placement {{else}} This is
+      <strong>not</strong> an active placement {{/if}}</p>
+    <p> {{#if rateId}} The daily reimbursement amount is ${{reimbursementRate}} {{/if}}
+    </p>
 
-      <div class="mt-2 mb-4">
-        <a href="/placement/edit/{{_id}}">Edit</a>
-      </div>
-      <div class="my-3">
-        <button class="removePlacement btn btn-danger">Remove</button>
-      </div>
-      {{/with}}
+    <div class="mt-2 mb-4">
+      <a href="/placement/edit/{{_id}}">Edit</a>
     </div>
+    <div class="my-3">
+      <button class="removePlacement btn btn-danger">Remove</button>
+    </div>
+    {{/with}}
   </div>
-
 </template>

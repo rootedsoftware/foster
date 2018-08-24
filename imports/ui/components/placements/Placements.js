@@ -4,7 +4,7 @@ import {
   Placements,
   removePlacement
 } from '../../../api/placements/placements';
-import { Children } from '../../../api/children/children';
+import Children from '../../../api/children/children';
 import { Rates } from '../../../api/rates/rates';
 import './Placements.html';
 import '../../stylesheets/styles.css';

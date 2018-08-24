@@ -4,7 +4,7 @@ import {
   removePlacement
 } from '../../../api/placements/placements';
 import './Placement.html';
-import { Children } from '../../../api/children/children';
+import Children from '../../../api/children/children';
 import { Rates } from '../../../api/rates/rates';
 
 Template.Placement.onCreated(function() {

@@ -1,8 +1,8 @@
 import { Meteor } from 'meteor/meteor';
 import { Template } from 'meteor/templating';
 import './EditRate.html';
-import toastr from 'toastr';
 import { Rates } from '../../../api/rates/rates';
+import { showToast } from '../../../api/utilities';
 
 Template.EditRate.onCreated(() => {
   Meteor.subscribe('rate', FlowRouter.current().params.rateId);
@@ -24,11 +24,7 @@ Template.EditRate.events({
       dailyAmount.value,
       name.value,
       (error) => {
-        if (error) {
-          toastr.error(error.error);
-        } else {
-          toastr.success('Updated');
-        }
+        showToast(error);
       }
     );
   },

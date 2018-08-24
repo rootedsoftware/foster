@@ -1,6 +1,5 @@
 import { Meteor } from 'meteor/meteor';
 import { Template } from 'meteor/templating';
-import toastr from 'toastr';
 import {
   Placements,
   removePlacement
@@ -9,6 +8,7 @@ import { Children } from '../../../api/children/children';
 import { Rates } from '../../../api/rates/rates';
 import './Placements.html';
 import '../../stylesheets/styles.css';
+import { showToast } from '../../../api/utilities';
 
 Template.Placements.onCreated(function() {
   this.autorun(() => {
@@ -50,9 +50,8 @@ Template.Placements.events({
       childId.value,
       rateId.value,
       (error) => {
-        if (error) {
-          toastr.error(error.error);
-        } else {
+        showToast(error);
+        if (!error) {
           startDate.value = '';
           endDate.value = '';
           isActive.value = '';

@@ -1,10 +1,10 @@
 import { Template } from 'meteor/templating';
 import { Meteor } from 'meteor/meteor';
 import './EditPlacement.html';
-import toastr from 'toastr';
 import { Placements } from '../../../api/placements/placements';
 import { Rates } from '../../../api/rates/rates';
 import { Children } from '../../../api/children/children';
+import { showToast } from '../../../api/utilities';
 
 Template.EditPlacement.onCreated(function() {
   this.autorun(() => {
@@ -41,11 +41,7 @@ Template.EditPlacement.events({
       isActive.value,
       childId.value,
       (error) => {
-        if (error) {
-          toastr.error(error.error);
-        } else {
-          toastr.success('Updated');
-        }
+        showToast(error);
       }
     );
   },

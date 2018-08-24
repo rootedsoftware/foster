@@ -1,8 +1,8 @@
 import { Meteor } from 'meteor/meteor';
 import { Template } from 'meteor/templating';
 import './EditContact.html';
-import toastr from 'toastr';
 import { Contacts } from '../../../api/contacts/contacts';
+import { showToast } from '../../../api/utilities';
 
 Template.EditContact.onCreated(() => {
   Meteor.subscribe('contact', FlowRouter.current().params.contactId);
@@ -28,11 +28,7 @@ Template.EditContact.events({
       title.value,
       phoneNumber.value,
       (error) => {
-        if (error) {
-          toastr.error(error.error);
-        } else {
-          toastr.success('Updated');
-        }
+        showToast(error);
       }
     );
   },

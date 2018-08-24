@@ -1,4 +1,5 @@
-/* eslint import/prefer-default-export: "off" */
+import toastr from 'toastr';
+
 export const calculateDaysInPlacement = (
   endDate,
   startDate,
@@ -43,4 +44,12 @@ export const calculateDaysInPlacement = (
     return new Date(endOfMonth).getUTCDate() - startDateObject.getUTCDate() + 1;
   }
   return new Date(endOfMonth).getUTCDate();
+};
+
+export const showToast = (error) => {
+  if (error) {
+    toastr.error(error.error);
+  } else {
+    toastr.success('Got it!');
+  }
 };

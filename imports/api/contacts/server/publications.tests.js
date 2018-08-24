@@ -1,6 +1,6 @@
 import { assert } from 'chai';
 import { PublicationCollector } from 'meteor/johanbrook:publication-collector';
-import { Contacts } from '../contacts';
+import Contacts from '../contacts';
 import './publications';
 
 /* eslint prefer-arrow-callback: "off" */

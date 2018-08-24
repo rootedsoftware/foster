@@ -1,6 +1,6 @@
 import { Meteor } from 'meteor/meteor';
 import { check } from 'meteor/check';
-import { Contacts } from '../contacts';
+import Contacts from '../contacts';
 
 Meteor.publish('contacts.all', function() {
   return this.userId && Contacts.find();

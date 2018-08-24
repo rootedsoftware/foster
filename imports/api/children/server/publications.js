@@ -1,10 +1,13 @@
 import { Meteor } from 'meteor/meteor';
 import { check } from 'meteor/check';
-import { Children } from '../children';
+import Children from '../children';
 
-Meteor.publish('children.all', () => Children.find());
+Meteor.publish('children.all', function() {
+  return this.userId && Children.find({ editableBy: this.userId });
+});
 
-Meteor.publish('child', (_id) => {
+Meteor.publish('child', function(_id) {
   check(_id, String);
-  return Children.find({ _id });
+
+  return this.userId && Children.find({ _id, editableBy: this.userId });
 });

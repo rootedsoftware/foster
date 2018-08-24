@@ -1,7 +1,8 @@
 import { Meteor } from 'meteor/meteor';
 import { Template } from 'meteor/templating';
 import './EditChild.html';
-import { Children } from '../../../api/children/children';
+import Children from '../../../api/children/children';
+import { childUpdate } from '../../../api/children/methods';
 import { showToast } from '../../../api/utilities';
 
 Template.EditChild.onCreated(() => {
@@ -18,11 +19,13 @@ Template.EditChild.events({
   'submit form': function(event) {
     event.preventDefault();
     const { _id, age, name } = event.target;
-    Meteor.call(
-      'childUpdate',
-      _id.value,
-      Number(age.value),
-      name.value,
+
+    childUpdate.call(
+      {
+        childId: _id.value,
+        age: Number(age.value),
+        name: name.value,
+      },
       (error) => {
         showToast(error);
       }

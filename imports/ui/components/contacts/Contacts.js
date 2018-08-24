@@ -1,6 +1,7 @@
 import { Meteor } from 'meteor/meteor';
 import { Template } from 'meteor/templating';
-import { Contacts, removeContact } from '../../../api/contacts/contacts';
+import Contacts from '../../../api/contacts/contacts';
+import { contactInsert, contactRemove } from '../../../api/contacts/methods';
 import './Contacts.html';
 import { showToast } from '../../../api/utilities';
 
@@ -20,11 +21,12 @@ Template.Contacts.events({
 
     const { name, title, phoneNumber } = event.target;
 
-    Meteor.call(
-      'contactsInsert',
-      name.value,
-      title.value,
-      phoneNumber.value,
+    contactInsert.call(
+      {
+        name: name.value,
+        title: title.value,
+        phoneNumber: phoneNumber.value,
+      },
       (error) => {
         showToast(error);
         if (!error) {
@@ -36,6 +38,6 @@ Template.Contacts.events({
     );
   },
   'click .removeContact': function() {
-    removeContact(this._id);
+    contactRemove.call({ contactId: this._id }, error => showToast(error));
   },
 });

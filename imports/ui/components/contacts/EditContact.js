@@ -1,7 +1,8 @@
 import { Meteor } from 'meteor/meteor';
 import { Template } from 'meteor/templating';
 import './EditContact.html';
-import { Contacts } from '../../../api/contacts/contacts';
+import Contacts from '../../../api/contacts/contacts';
+import { contactUpdate } from '../../../api/contacts/methods';
 import { showToast } from '../../../api/utilities';
 
 Template.EditContact.onCreated(() => {
@@ -21,12 +22,13 @@ Template.EditContact.events({
       _id, name, title, phoneNumber,
     } = event.target;
 
-    Meteor.call(
-      'contactUpdate',
-      _id.value,
-      name.value,
-      title.value,
-      phoneNumber.value,
+    contactUpdate.call(
+      {
+        contactId: _id.value,
+        name: name.value,
+        title: title.value,
+        phoneNumber: phoneNumber.value,
+      },
       (error) => {
         showToast(error);
       }

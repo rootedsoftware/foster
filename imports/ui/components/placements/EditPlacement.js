@@ -3,7 +3,7 @@ import { Meteor } from 'meteor/meteor';
 import './EditPlacement.html';
 import { Placements } from '../../../api/placements/placements';
 import { Rates } from '../../../api/rates/rates';
-import { Children } from '../../../api/children/children';
+import Children from '../../../api/children/children';
 import { showToast } from '../../../api/utilities';
 
 Template.EditPlacement.onCreated(function() {

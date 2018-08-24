@@ -1,6 +1,6 @@
 import { Meteor } from 'meteor/meteor';
 import { assert } from 'chai';
-import { Children } from './children';
+import Children from './children';
 
 /* eslint prefer-arrow-callback: "off" */
 

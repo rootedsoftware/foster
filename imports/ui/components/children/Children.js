@@ -1,6 +1,7 @@
 import { Meteor } from 'meteor/meteor';
 import { Template } from 'meteor/templating';
-import { Children, removeChild } from '../../../api/children/children';
+import { childInsert, childRemove } from '../../../api/children/methods';
+import Children from '../../../api/children/children';
 import './Children.html';
 import { showToast } from '../../../api/utilities';
 
@@ -18,17 +19,30 @@ Template.Children.events({
   'submit .child-add': function(event) {
     event.preventDefault();
 
-    const { name, age } = event.target;
+    const { age, name } = event.target;
 
-    Meteor.call('childrenInsert', name.value, Number(age.value), (error) => {
-      showToast(error);
-      if (!error) {
-        name.value = '';
-        age.value = '';
+    childInsert.call(
+      {
+        age: Number(age.value),
+        name: name.value,
+      },
+      (error) => {
+        showToast(error);
+        if (!error) {
+          age.value = '';
+          name.value = '';
+        }
       }
-    });
+    );
   },
   'click .removeChild': function() {
-    removeChild(this._id);
+    childRemove.call(
+      {
+        childId: this._id,
+      },
+      (error) => {
+        showToast(error);
+      }
+    );
   },
 });

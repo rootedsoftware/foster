@@ -1,7 +1,9 @@
 import { Meteor } from 'meteor/meteor';
 import { Template } from 'meteor/templating';
-import { Children, removeChild } from '../../../api/children/children';
+import Children from '../../../api/children/children';
 import './child.html';
+import { childRemove } from '../../../api/children/methods';
+import { showToast } from '../../../api/utilities';
 
 Template.Child.onCreated(() => {
   Meteor.subscribe('child', FlowRouter.current().params.childId);
@@ -15,8 +17,17 @@ Template.Child.helpers({
 
 Template.Child.events({
   'click .removeChild': function() {
-    removeChild(this._id);
-    FlowRouter.go('/children');
+    childRemove.call(
+      {
+        childId: this._id,
+      },
+      (error) => {
+        showToast(error);
+        if (!error) {
+          FlowRouter.go('/children');
+        }
+      }
+    );
   },
   'click .editChild': function() {
     FlowRouter.go(`/child/edit?id=${this._id}`);

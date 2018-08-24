@@ -1,8 +1,8 @@
 import { Meteor } from 'meteor/meteor';
 import { Template } from 'meteor/templating';
-import toastr from 'toastr';
 import { Contacts, removeContact } from '../../../api/contacts/contacts';
 import './Contacts.html';
+import { showToast } from '../../../api/utilities';
 
 Template.Contacts.onCreated(() => {
   Meteor.subscribe('contacts.all');
@@ -26,9 +26,8 @@ Template.Contacts.events({
       title.value,
       phoneNumber.value,
       (error) => {
-        if (error) {
-          toastr.error(error.error);
-        } else {
+        showToast(error);
+        if (!error) {
           name.value = '';
           title.value = '';
           phoneNumber.value = '';

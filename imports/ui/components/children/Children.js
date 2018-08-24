@@ -1,8 +1,8 @@
 import { Meteor } from 'meteor/meteor';
 import { Template } from 'meteor/templating';
-import toastr from 'toastr';
 import { Children, removeChild } from '../../../api/children/children';
 import './Children.html';
+import { showToast } from '../../../api/utilities';
 
 Template.Children.onCreated(() => {
   Meteor.subscribe('children.all');
@@ -21,9 +21,8 @@ Template.Children.events({
     const { name, age } = event.target;
 
     Meteor.call('childrenInsert', name.value, Number(age.value), (error) => {
-      if (error) {
-        toastr.error(error.error);
-      } else {
+      showToast(error);
+      if (!error) {
         name.value = '';
         age.value = '';
       }

@@ -19,7 +19,7 @@ jobs:
           command: meteor || curl https://install.meteor.com | /bin/sh
       - run:
           name: Install npm dependencies with meteor
-          command: meteor npm install
+          command: meteor npm ci
 
       - save_cache:
           paths:

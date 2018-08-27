@@ -1,4 +1,3 @@
-import { Meteor } from 'meteor/meteor';
 import { Template } from 'meteor/templating';
 import Placements from '../../../api/placements/placements';
 import Children from '../../../api/children/children';
@@ -6,6 +5,10 @@ import Rates from '../../../api/rates/rates';
 import './Placements.html';
 import '../../stylesheets/styles.css';
 import { showToast } from '../../../api/utilities';
+import {
+  placementRemove,
+  placementInsert
+} from '../../../api/placements/methods';
 
 Template.Placements.onCreated(function() {
   this.autorun(() => {
@@ -39,13 +42,14 @@ Template.Placements.events({
       startDate, endDate, isActive, childId, rateId,
     } = event.target;
 
-    Meteor.call(
-      'placementInsert',
-      new Date(startDate.value),
-      endDate.value ? new Date(endDate.value) : null,
-      isActive.value === 'yes',
-      childId.value,
-      rateId.value,
+    placementInsert.call(
+      {
+        startDate: new Date(startDate.value),
+        endDate: endDate.value ? new Date(endDate.value) : null,
+        isActive: isActive.value === 'yes',
+        childId: childId.value,
+        rateId: rateId.value,
+      },
       (error) => {
         showToast(error);
         if (!error) {
@@ -59,7 +63,7 @@ Template.Placements.events({
     );
   },
   'click .removePlacement': function() {
-    Meteor.call('removePlacement', this._id, (error) => {
+    placementRemove.call({ placementId: this._id }, (error) => {
       if (error) {
         showToast(error);
       } else {

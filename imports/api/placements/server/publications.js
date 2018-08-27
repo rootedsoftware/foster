@@ -12,7 +12,7 @@ Meteor.publish('placements.all', function() {
   return Placements.find({ familyId: this.userId });
 });
 
-Meteor.publish('placement', (_id) => {
+Meteor.publish('placement', function(_id) {
   check(_id, String);
   if (!this.userId) {
     throw new Meteor.Error(
@@ -23,7 +23,7 @@ Meteor.publish('placement', (_id) => {
   return Placements.find({ _id, familyId: this.userId });
 });
 
-Meteor.publish('placementByMonth', (month, year, currentYearMonth) => {
+Meteor.publish('placementByMonth', function(month, year, currentYearMonth) {
   check(month, Number);
   check(year, Number);
   check(currentYearMonth, String);

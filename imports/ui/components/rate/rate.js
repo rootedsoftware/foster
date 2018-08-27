@@ -1,7 +1,7 @@
-import { Meteor } from 'meteor/meteor';
 import { Template } from 'meteor/templating';
 import { showToast } from '../../../api/utilities';
 import Rates from '../../../api/rates/rates';
+import { removeRate } from '../../../api/rates/methods';
 import './rate.html';
 
 Template.Rate.onCreated(function() {
@@ -16,7 +16,7 @@ Template.Rate.helpers({
 
 Template.Rate.events({
   'click .removeRate': function() {
-    Meteor.call('removeRate', this._id, (error) => {
+    removeRate.call({ rateId: this._id }, (error) => {
       if (error) {
         showToast(error);
       } else {

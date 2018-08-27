@@ -7,7 +7,7 @@ export const insertRate = new ValidatedMethod({
   name: 'insert.rate',
   validate: new SimpleSchema({
     name: { type: String },
-    dailyAmount: { type: String },
+    dailyAmount: { type: Number },
   }).validator(),
   run({ name, dailyAmount }) {
     if (!this.userId) {

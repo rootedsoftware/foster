@@ -1,6 +1,6 @@
-import { Meteor } from 'meteor/meteor';
 import { Template } from 'meteor/templating';
 import Placements from '../../../api/placements/placements';
+import { placementRemove } from '../../../api/placements/methods';
 import './Placement.html';
 import Children from '../../../api/children/children';
 import Rates from '../../../api/rates/rates';
@@ -30,7 +30,7 @@ Template.Placement.helpers({
 
 Template.Placement.events({
   'click .removePlacement': function() {
-    Meteor.call('removePacement', this._id, (error) => {
+    placementRemove.call({ placementId: this._id }, (error) => {
       if (error) {
         showToast(error);
       } else {

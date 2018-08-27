@@ -1,7 +1,7 @@
-import { Meteor } from 'meteor/meteor';
 import { Template } from 'meteor/templating';
 import './EditRate.html';
 import Rates from '../../../api/rates/rates';
+import { updateRate } from '../../../api/rates/methods';
 import { showToast } from '../../../api/utilities';
 
 Template.EditRate.onCreated(function() {
@@ -18,11 +18,13 @@ Template.EditRate.events({
   'submit form': function(event) {
     event.preventDefault();
     const { _id, dailyAmount, name } = event.target;
-    Meteor.call(
-      'updateRate',
-      _id.value,
-      dailyAmount.value,
-      name.value,
+    updateRate.call(
+      {
+        rateId: _id.value,
+        dailyAmount:
+          dailyAmount && dailyAmount.value && Number(dailyAmount.value),
+        name: name.value,
+      },
       (error) => {
         showToast(error);
       }

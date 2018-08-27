@@ -17,7 +17,7 @@ Template.Contact.helpers({
 
 Template.Contact.events({
   'click .removeContact': function() {
-    contactRemove({ contactId: this._id }, (error) => {
+    contactRemove.call({ contactId: this._id }, (error) => {
       showToast(error);
       if (!error) FlowRouter.go('/contacts');
     });

@@ -1,10 +1,10 @@
 import { Template } from 'meteor/templating';
-import { Meteor } from 'meteor/meteor';
 import './EditPlacement.html';
 import Placements from '../../../api/placements/placements';
 import Rates from '../../../api/rates/rates';
 import Children from '../../../api/children/children';
 import { showToast } from '../../../api/utilities';
+import { placementUpdate } from '../../../api/placements/methods';
 
 Template.EditPlacement.onCreated(function() {
   this.autorun(() => {
@@ -33,13 +33,14 @@ Template.EditPlacement.events({
     const {
       _id, startDate, endDate, isActive, childId,
     } = event.target;
-    Meteor.call(
-      'placementUpdate',
-      _id.value,
-      new Date(startDate.value),
-      endDate.value ? new Date(endDate.value) : null,
-      isActive.value,
-      childId.value,
+    placementUpdate.call(
+      {
+        placementId: _id.value,
+        startDate: new Date(startDate.value),
+        endDate: endDate.value ? new Date(endDate.value) : null,
+        isActive: isActive.value,
+        childId: childId.value,
+      },
       (error) => {
         showToast(error);
       }

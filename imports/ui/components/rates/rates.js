@@ -1,6 +1,6 @@
-import { Meteor } from 'meteor/meteor';
 import { Template } from 'meteor/templating';
 import Rates from '../../../api/rates/rates';
+import { insertRate, removeRate } from '../../../api/rates/methods';
 import './rates.html';
 import { showToast } from '../../../api/utilities';
 
@@ -23,16 +23,19 @@ Template.Rates.events({
     const { target } = event;
     const { name, dailyAmount } = target;
 
-    Meteor.call('insertRate', name.value, Number(dailyAmount.value), (error) => {
-      showToast(error);
-      if (!error) {
-        name.value = '';
-        dailyAmount.value = '';
+    insertRate.call(
+      { name: name.value, dailyAmount: Number(dailyAmount.value) },
+      (error) => {
+        showToast(error);
+        if (!error) {
+          name.value = '';
+          dailyAmount.value = '';
+        }
       }
-    });
+    );
   },
   'click .removeRate': function() {
-    Meteor.call('removeRate', this._id, (error) => {
+    removeRate.call({ rateId: this._id }, (error) => {
       if (error) {
         showToast(error);
       }

@@ -9,10 +9,11 @@ export const placementInsert = new ValidatedMethod({
     startDate: { type: Date },
     endDate: { type: Date, optional: true },
     isActive: { type: Boolean },
+    childId: { type: String, optional: true },
     rateId: { type: String, optional: true },
   }).validator(),
   run({
-    startDate, endDate, isActive, rateId,
+    startDate, endDate, isActive, childId, rateId,
   }) {
     if (!this.userId) {
       throw new Meteor.Error(
@@ -26,6 +27,7 @@ export const placementInsert = new ValidatedMethod({
       startDate,
       endDate,
       isActive,
+      childId,
       rateId,
     });
   },

@@ -1,3 +1,4 @@
+import { Meteor } from 'meteor/meteor';
 import { Template } from 'meteor/templating';
 import Placements from '../../../api/placements/placements';
 import { placementRemove } from '../../../api/placements/methods';

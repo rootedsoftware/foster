@@ -6,7 +6,7 @@ import { showToast } from '../../../api/utilities';
 
 Template.Rates.onCreated(function() {
   this.autorun(() => {
-    Meteor.subscribe('rates.all');
+    this.subscribe('rates.all');
   });
 });
 

@@ -22,7 +22,7 @@ if (Meteor.isServer) {
       assert.equal(Children.find().count(), 1);
     });
 
-    it('can update a child with matching editableBy and userId', function() {
+    it('can update a child with matching familyId and userId', function() {
       childInsert.run.call(
         { userId: 'dcba' },
         {
@@ -41,9 +41,9 @@ if (Meteor.isServer) {
         }
       );
 
-      assert.equal(Children.findOne({ editableBy: 'dcba' }).age, 3);
+      assert.equal(Children.findOne({ familyId: 'dcba' }).age, 3);
     });
-    it('can remove a child with matching editableBy and userId', function() {
+    it('can remove a child with matching familyId and userId', function() {
       childInsert.run.call(
         { userId: 'efgh' },
         {

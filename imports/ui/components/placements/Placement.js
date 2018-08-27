@@ -1,11 +1,10 @@
+import { Meteor } from 'meteor/meteor';
 import { Template } from 'meteor/templating';
-import {
-  Placements,
-  removePlacement
-} from '../../../api/placements/placements';
+import Placements from '../../../api/placements/placements';
 import './Placement.html';
 import Children from '../../../api/children/children';
-import { Rates } from '../../../api/rates/rates';
+import Rates from '../../../api/rates/rates';
+import { showToast } from '../../../api/utilities';
 
 Template.Placement.onCreated(function() {
   this.autorun(() => {
@@ -31,8 +30,13 @@ Template.Placement.helpers({
 
 Template.Placement.events({
   'click .removePlacement': function() {
-    removePlacement(this._id);
-    FlowRouter.go('/placements');
+    Meteor.call('removePacement', this._id, (error) => {
+      if (error) {
+        showToast(error);
+      } else {
+        FlowRouter.go('/placements');
+      }
+    });
   },
   'click .editPlacement': function() {
     FlowRouter.go(`/placement/edit?id=${this._id}`);

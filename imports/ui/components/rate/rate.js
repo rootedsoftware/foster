@@ -1,6 +1,7 @@
 import { Meteor } from 'meteor/meteor';
 import { Template } from 'meteor/templating';
-import { Rates, removeRate } from '../../../api/rates/rates';
+import { showToast } from '../../../api/utilities';
+import Rates from '../../../api/rates/rates';
 import './rate.html';
 
 Template.Rate.onCreated(() => {
@@ -15,8 +16,13 @@ Template.Rate.helpers({
 
 Template.Rate.events({
   'click .removeRate': function() {
-    removeRate(this._id);
-    FlowRouter.go('/rates');
+    Meteor.call('removeRate', this._id, (error) => {
+      if (error) {
+        showToast(error);
+      } else {
+        FlowRouter.go('/rates');
+      }
+    });
   },
   'click .editRate': function() {
     FlowRouter.go(`/rates/edit?id=${this._id}`);

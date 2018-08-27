@@ -9,6 +9,7 @@ describe('contacts publications', function() {
   beforeEach(function() {
     Contacts.remove({});
     Contacts.insert({
+      familyId: 'edasi',
       name: 'Johnny Smith',
       title: 'Case Worker',
       phoneNumber: '(786) 111-1248',
@@ -17,7 +18,7 @@ describe('contacts publications', function() {
 
   describe('contacts.all', function() {
     it('sends all contacts', function(done) {
-      const collector = new PublicationCollector();
+      const collector = new PublicationCollector({ userId: 'edasi' });
       collector.collect('contacts.all', (collections) => {
         assert.equal(collections.contacts.length, 1);
         done();

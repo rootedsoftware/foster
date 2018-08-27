@@ -16,8 +16,8 @@ export const childUpdate = new ValidatedMethod({
     if (
       !this.userId
       || !child
-      || !child.editableBy
-      || child.editableBy !== this.userId
+      || !child.familyId
+      || child.familyId !== this.userId
     ) {
       throw new Meteor.Error(
         'child.update.unauthorized',
@@ -42,7 +42,7 @@ export const childInsert = new ValidatedMethod({
       throw new Meteor.Error('child.insert.unauthorized', 'Must be logged in');
     }
 
-    Children.insert({ age, name, editableBy: this.userId });
+    Children.insert({ age, name, familyId: this.userId });
   },
 });
 
@@ -54,7 +54,7 @@ export const childRemove = new ValidatedMethod({
   run({ childId }) {
     const child = Children.findOne(childId);
 
-    if (!this.userId || this.userId !== child.editableBy) {
+    if (!this.userId || this.userId !== child.familyId) {
       throw new Meteor.Error('child.remove.unauthorized', 'Not authorized');
     }
 

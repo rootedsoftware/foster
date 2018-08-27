@@ -1,7 +1,7 @@
 import { Meteor } from 'meteor/meteor';
 import { Template } from 'meteor/templating';
 import './EditRate.html';
-import { Rates } from '../../../api/rates/rates';
+import Rates from '../../../api/rates/rates';
 import { showToast } from '../../../api/utilities';
 
 Template.EditRate.onCreated(() => {
@@ -19,7 +19,7 @@ Template.EditRate.events({
     event.preventDefault();
     const { _id, dailyAmount, name } = event.target;
     Meteor.call(
-      'rates.update',
+      'updateRate',
       _id.value,
       dailyAmount.value,
       name.value,

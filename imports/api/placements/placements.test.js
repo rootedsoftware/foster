@@ -1,6 +1,6 @@
 import { assert } from 'chai';
 import { Meteor } from 'meteor/meteor';
-import { Placements } from './placements';
+import Placements from './placements';
 
 /* eslint prefer-arrow-callback: "off" */
 

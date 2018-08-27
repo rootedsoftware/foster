@@ -1,12 +1,26 @@
 import { Meteor } from 'meteor/meteor';
 import { check } from 'meteor/check';
-import { Placements } from '../placements';
+import Placements from '../placements';
 
-Meteor.publish('placements.all', () => Placements.find());
+Meteor.publish('placements.all', function() {
+  if (!this.userId) {
+    throw new Meteor.Error(
+      'placements.all.publish.unauthorized',
+      'Must be logged in'
+    );
+  }
+  return Placements.find({ familyId: this.userId });
+});
 
 Meteor.publish('placement', (_id) => {
   check(_id, String);
-  return Placements.find({ _id });
+  if (!this.userId) {
+    throw new Meteor.Error(
+      'placement.publish.unauthorized',
+      'Must be logged in'
+    );
+  }
+  return Placements.find({ _id, familyId: this.userId });
 });
 
 Meteor.publish('placementByMonth', (month, year, currentYearMonth) => {
@@ -14,6 +28,12 @@ Meteor.publish('placementByMonth', (month, year, currentYearMonth) => {
   check(year, Number);
   check(currentYearMonth, String);
 
+  if (!this.userId) {
+    throw new Meteor.Error(
+      'placementByMonth.publish.unauthorized',
+      'Must be logged in'
+    );
+  }
   const startOfMonth = `${String(year)}-${String(month)}-01`;
   const endOfMonth = `${String(year)}-${String(month)}-${new Date(
     year,
@@ -22,6 +42,7 @@ Meteor.publish('placementByMonth', (month, year, currentYearMonth) => {
   ).getDate()}`;
 
   const commonQuery = {
+    familyId: this.userId,
     startDate: {
       $lte: new Date(endOfMonth),
     },

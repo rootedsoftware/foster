@@ -1,7 +1,7 @@
 // Fill the DB with example data on startup
 
 import { Meteor } from 'meteor/meteor';
-import { Rates } from '../../api/rates/rates';
+import Rates from '../../api/rates/rates';
 
 Meteor.startup(() => {
   // if the Rates collection is empty

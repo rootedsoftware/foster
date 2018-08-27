@@ -1,11 +1,8 @@
 import { Meteor } from 'meteor/meteor';
 import { Template } from 'meteor/templating';
-import {
-  Placements,
-  removePlacement
-} from '../../../api/placements/placements';
+import Placements from '../../../api/placements/placements';
 import Children from '../../../api/children/children';
-import { Rates } from '../../../api/rates/rates';
+import Rates from '../../../api/rates/rates';
 import './Placements.html';
 import '../../stylesheets/styles.css';
 import { showToast } from '../../../api/utilities';
@@ -43,7 +40,7 @@ Template.Placements.events({
     } = event.target;
 
     Meteor.call(
-      'placementsInsert',
+      'placementInsert',
       new Date(startDate.value),
       endDate.value ? new Date(endDate.value) : null,
       isActive.value === 'yes',
@@ -62,6 +59,12 @@ Template.Placements.events({
     );
   },
   'click .removePlacement': function() {
-    removePlacement(this._id);
+    Meteor.call('removePlacement', this._id, (error) => {
+      if (error) {
+        showToast(error);
+      } else {
+        showToast();
+      }
+    });
   },
 });

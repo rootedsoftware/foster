@@ -3,11 +3,21 @@ import { check } from 'meteor/check';
 import Children from '../children';
 
 Meteor.publish('children.all', function() {
-  return this.userId && Children.find({ editableBy: this.userId });
+  if (!this.userId) {
+    throw new Meteor.Error(
+      'children.all.publish.unauthorized',
+      'Must be logged in'
+    );
+  }
+  return Children.find({ familyId: this.userId });
 });
 
 Meteor.publish('child', function(_id) {
   check(_id, String);
 
-  return this.userId && Children.find({ _id, editableBy: this.userId });
+  if (!this.userId) {
+    throw new Meteor.Error('child.publish.unauthorized', 'Must be logged in');
+  }
+
+  return Children.find({ _id, familyId: this.userId });
 });

@@ -1,27 +1,51 @@
 import { Meteor } from 'meteor/meteor';
-import { check } from 'meteor/check';
-import { Rates } from './rates';
+import { ValidatedMethod } from 'meteor/mdg:validated-method';
+import SimpleSchema from 'simpl-schema';
+import Rates from './rates';
 
-Meteor.methods({
-  ratesInsert(name, dailyAmount) {
-    check(name, String);
-    check(dailyAmount, Number);
+export const insertRate = new ValidatedMethod({
+  name: 'insert.rate',
+  validate: new SimpleSchema({
+    name: { type: String },
+    dailyAmount: { type: String },
+  }).validator(),
+  run({ name, dailyAmount }) {
+    if (!this.userId) {
+      throw new Meteor.Error('rate.insert.unathorized', 'Must be logged in');
+    }
+    Rates.insert({ familyId: this.userId, name, dailyAmount });
+  },
+});
 
-    return Rates.insert({
-      name,
-      dailyAmount,
-    });
+export const updateRate = new ValidatedMethod({
+  name: 'update.rate',
+  validate: new SimpleSchema({
+    rateId: { type: String },
+    name: { type: String, optional: true },
+    dailyAmount: { type: Number, optional: true },
+  }).validator(),
+  run({ rateId, name, dailyAmount }) {
+    if (!this.userId) {
+      throw new Meteor.Error('rate.update.unauthorized', 'Must be logged in');
+    }
+
+    Rates.update(
+      { familyId: this.userId, _id: rateId },
+      { $set: { name, dailyAmount } }
+    );
   },
-  'rates.remove': function(_id) {
-    check(_id, String);
-    return Rates.remove({
-      _id,
-    });
-  },
-  'rates.update': function(_id, dailyAmount, name) {
-    check(_id, String);
-    check(dailyAmount, String);
-    check(name, String);
-    return Rates.update({ _id }, { $set: { dailyAmount, name } });
+});
+
+export const removeRate = new ValidatedMethod({
+  name: 'remove.rate',
+  validate: new SimpleSchema({
+    rateId: { type: String },
+  }).validator(),
+  run({ rateId }) {
+    if (!this.userId) {
+      throw new Meteor.Error('remove.rate.unauthorized', 'Must be logged in');
+    }
+
+    Rates.remove({ familyId: this.userId, _id: rateId });
   },
 });

@@ -14,16 +14,19 @@ export const contactUpdate = new ValidatedMethod({
   run({
     contactId, name, title, phoneNumber,
   }) {
-    const contact = Contacts.findOne(contactId);
-
-    if (
-      !this.userId
-      || !contact
-      || !contact.editableBy
-      || contact.editableBy !== this.userId
-    ) {
+    if (!this.userId) {
       throw new Meteor.Error(
         'contact.update.unauthorized',
+        'Cannot edit that contact'
+      );
+    }
+
+    const contact = Contacts.findOne({ _id: contactId, familyId: this.userId });
+
+    if (!contact) {
+      // Ambiguous error is intentional, don't want to let users probe for valid contact IDs
+      throw new Meteor.Error(
+        'contact.update.error',
         'Cannot edit that contact'
       );
     }
@@ -53,7 +56,7 @@ export const contactInsert = new ValidatedMethod({
       name,
       title,
       phoneNumber,
-      editableBy: this.userId,
+      familyId: this.userId,
     });
   },
 });
@@ -66,7 +69,7 @@ export const contactRemove = new ValidatedMethod({
   run({ contactId }) {
     const contact = Contacts.findOne(contactId);
 
-    if (!this.userId || this.userId !== contact.editableBy) {
+    if (!this.userId || this.userId !== contact.familyId) {
       throw new Meteor.Error('contact.remove.unauthorized', 'Not authorized');
     }
 

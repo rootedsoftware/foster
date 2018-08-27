@@ -9,6 +9,7 @@ describe('children publications', function() {
   beforeEach(function() {
     Children.remove({});
     Children.insert({
+      familyId: 'abcd',
       name: 'Johnny',
       age: 5,
     });
@@ -16,7 +17,7 @@ describe('children publications', function() {
 
   describe('children.all', function() {
     it('sends all children', function(done) {
-      const collector = new PublicationCollector();
+      const collector = new PublicationCollector({ userId: 'abcd' });
       collector.collect('children.all', (collections) => {
         assert.equal(collections.children.length, 1);
         done();

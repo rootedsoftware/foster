@@ -2,9 +2,9 @@ import { Mongo } from 'meteor/mongo';
 import { Template } from 'meteor/templating';
 import { ReactiveVar } from 'meteor/reactive-var';
 import './Reports.html';
-import { Placements } from '../../../api/placements/placements';
+import Placements from '../../../api/placements/placements';
 import Children from '../../../api/children/children';
-import { Rates } from '../../../api/rates/rates';
+import Rates from '../../../api/rates/rates';
 import { calculateDaysInPlacement } from '../../../api/utilities';
 
 Template.Reports.onCreated(function() {

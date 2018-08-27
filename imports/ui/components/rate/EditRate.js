@@ -4,8 +4,8 @@ import './EditRate.html';
 import Rates from '../../../api/rates/rates';
 import { showToast } from '../../../api/utilities';
 
-Template.EditRate.onCreated(() => {
-  Meteor.subscribe('rate', FlowRouter.current().params.rateId);
+Template.EditRate.onCreated(function() {
+  this.autorun(() => this.subscribe('rate', FlowRouter.current().params.rateId));
 });
 
 Template.EditRate.helpers({

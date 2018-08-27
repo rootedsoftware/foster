@@ -5,8 +5,8 @@ import Children from '../../../api/children/children';
 import './Children.html';
 import { showToast } from '../../../api/utilities';
 
-Template.Children.onCreated(() => {
-  Meteor.subscribe('children.all');
+Template.Children.onCreated(function() {
+  this.autorun(() => Meteor.subscribe('children.all'));
 });
 
 Template.Children.helpers({

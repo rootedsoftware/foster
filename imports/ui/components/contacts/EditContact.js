@@ -1,12 +1,11 @@
-import { Meteor } from 'meteor/meteor';
 import { Template } from 'meteor/templating';
 import './EditContact.html';
 import Contacts from '../../../api/contacts/contacts';
 import { contactUpdate } from '../../../api/contacts/methods';
 import { showToast } from '../../../api/utilities';
 
-Template.EditContact.onCreated(() => {
-  Meteor.subscribe('contact', FlowRouter.current().params.contactId);
+Template.EditContact.onCreated(function() {
+  this.autorun(() => this.subscribe('contact', FlowRouter.current().params.contactId));
 });
 
 Template.EditContact.helpers({

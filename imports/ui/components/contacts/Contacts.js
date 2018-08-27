@@ -1,12 +1,11 @@
-import { Meteor } from 'meteor/meteor';
 import { Template } from 'meteor/templating';
 import Contacts from '../../../api/contacts/contacts';
 import { contactInsert, contactRemove } from '../../../api/contacts/methods';
 import './Contacts.html';
 import { showToast } from '../../../api/utilities';
 
-Template.Contacts.onCreated(() => {
-  Meteor.subscribe('contacts.all');
+Template.Contacts.onCreated(function() {
+  this.autorun(() => this.subscribe('contacts.all'));
 });
 
 Template.Contacts.helpers({

@@ -1,12 +1,11 @@
-import { Meteor } from 'meteor/meteor';
 import { Template } from 'meteor/templating';
 import './EditChild.html';
 import Children from '../../../api/children/children';
 import { childUpdate } from '../../../api/children/methods';
 import { showToast } from '../../../api/utilities';
 
-Template.EditChild.onCreated(() => {
-  Meteor.subscribe('child', FlowRouter.current().params.childId);
+Template.EditChild.onCreated(function() {
+  this.autorun(() => this.subscribe('child', FlowRouter.current().params.childId));
 });
 
 Template.EditChild.helpers({

@@ -4,8 +4,8 @@ import { showToast } from '../../../api/utilities';
 import Rates from '../../../api/rates/rates';
 import './rate.html';
 
-Template.Rate.onCreated(() => {
-  Meteor.subscribe('rate', FlowRouter.current().params.rateId);
+Template.Rate.onCreated(function() {
+  this.autorun(() => this.subscribe('rate', FlowRouter.current().params.rateId));
 });
 
 Template.Rate.helpers({

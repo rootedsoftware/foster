@@ -48,7 +48,7 @@ export const calculateDaysInPlacement = (
 
 export const showToast = (error) => {
   if (error) {
-    toastr.error(error.error);
+    toastr.error(error.message);
   } else {
     toastr.success('Got it!');
   }

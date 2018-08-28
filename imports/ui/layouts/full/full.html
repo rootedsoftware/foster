@@ -1,6 +1,6 @@
 <template name="Full">
+  {{#if currentUser}} {{> Template.dynamic template=top}}
   <main role="main" class="container">
-    {{#if currentUser}} {{> Template.dynamic template=top}}
     <div class="m-2">
       <div class="card">
         <div class="card-body">
@@ -10,7 +10,6 @@
         </div>
       </div>
     </div>
-    {{else}} {{> loginButtons}} Please log in. {{/if}}
   </main>
-  {{#if currentUser}} {{> Template.dynamic template=bottom}} {{/if}}
+  {{/if}} {{#if currentUser}} {{> Template.dynamic template=bottom}} {{/if}}
 </template>

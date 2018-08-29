@@ -2,6 +2,7 @@ import { Meteor } from 'meteor/meteor';
 import { Template } from 'meteor/templating';
 import { childInsert, childRemove } from '../../../api/children/methods';
 import Children from '../../../api/children/children';
+import './AddChild';
 import './Children.html';
 import { showToast } from '../../../api/utilities';
 

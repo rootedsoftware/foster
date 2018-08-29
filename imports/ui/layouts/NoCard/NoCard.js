@@ -1,0 +1,1 @@
+import './NoCard.html';

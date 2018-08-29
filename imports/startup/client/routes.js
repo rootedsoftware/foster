@@ -5,6 +5,7 @@ import { AccountsTemplates } from 'meteor/useraccounts:core';
 // Import needed templates
 import '../../ui/layouts/full/full';
 import '../../ui/layouts/body/body';
+import '../../ui/layouts/NoCard/NoCard';
 import '../../ui/layouts/LoginLayout/LoginLayout';
 import '../../ui/pages/MyAccountTemplates/MyAccountTemplates';
 
@@ -39,7 +40,7 @@ FlowRouter.triggers.enter([AccountsTemplates.ensureSignedIn], {
 FlowRouter.route('/', {
   name: 'Home',
   action() {
-    BlazeLayout.render('Full', {
+    BlazeLayout.render('NoCard', {
       top: 'Header',
       main: 'Home',
       bottom: 'Footer',

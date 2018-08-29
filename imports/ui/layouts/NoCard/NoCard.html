@@ -1,0 +1,12 @@
+<template name="NoCard">
+
+  {{#if currentUser}} {{> Template.dynamic template=top}}
+  <main role="main" class="container">
+    <div class="my-5">
+      <div class="row">
+        {{> Template.dynamic template=main}}
+      </div>
+    </div>
+  </main>
+  {{/if}} {{#if currentUser}} {{> Template.dynamic template=bottom}} {{/if}}
+</template>
